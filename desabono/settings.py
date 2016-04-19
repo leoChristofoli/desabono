@@ -75,10 +75,26 @@ WSGI_APPLICATION = 'desabono.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'desabono',
+        'USER': 'u_desabono',
+        'PASSWORD': 'local',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'de9iqbsjaep9ja',
+#         'USER': 'sdcfxjlfpcfdrk',
+#         'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
+#         'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = (
     {
