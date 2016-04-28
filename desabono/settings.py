@@ -24,7 +24,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "3o=&mpr9w6l^bzujj67u64^sfj%i$r1e%%j=-rhhr@mry@m81e"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
@@ -74,28 +74,17 @@ WSGI_APPLICATION = 'desabono.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'desabono',
-        'USER': 'u_desabono',
-        'PASSWORD': 'local',
-        'HOST': 'localhost',
+        'NAME': 'de9iqbsjaep9ja',
+        'USER': 'sdcfxjlfpcfdrk',
+        'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
+        'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'de9iqbsjaep9ja',
-#         'USER': 'sdcfxjlfpcfdrk',
-#         'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
-#         'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = (
     {
