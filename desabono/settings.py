@@ -74,26 +74,26 @@ WSGI_APPLICATION = 'desabono.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'desabono',
-        'USER': 'u_desabono',
-        'PASSWORD': 'local',
-        'HOST': 'localhost',
+        'NAME': 'de9iqbsjaep9ja',
+        'USER': 'sdcfxjlfpcfdrk',
+        'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
+        'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
 
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'de9iqbsjaep9ja',
-#         'USER': 'sdcfxjlfpcfdrk',
-#         'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
-#         'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
-#         'PORT': '5432',
+#         'NAME': 'desabono',
+#         'USER': 'postgres',
+#         'PASSWORD': '@#Seg01',
+#         'HOST': '169.6.233.45',
+#         'PORT': '5423',
 #     }
 # }
 
@@ -142,7 +142,6 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
     os.path.join(PROJECT_ROOT, 'static')
 ]
-print STATICFILES_DIRS
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
