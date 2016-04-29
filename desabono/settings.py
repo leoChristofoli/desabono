@@ -24,7 +24,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "3o=&mpr9w6l^bzujj67u64^sfj%i$r1e%%j=-rhhr@mry@m81e"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -131,7 +131,6 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
     os.path.join(PROJECT_ROOT, 'static')
 ]
-print STATICFILES_DIRS
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
