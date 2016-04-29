@@ -9,9 +9,10 @@ def index(request):
     template = 'posto/index.html'
     return render(request, template, context)
 
+
 def cadastro(request):
     print('1')
-    print request.method
+    print(request.method)
     if request.method == 'POST':
         print('2')
         print(request.method)
@@ -27,7 +28,7 @@ def cadastro(request):
             print('--------------------------------')
             print(new_user)
             new_user.data_add = datetime.now()
-            new_user.ip = '111.111.111.1'
+            new_user.ip_user = '111.111.111.1'
             new_user.save()
             return HttpResponseRedirect('/')
     else:
