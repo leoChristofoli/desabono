@@ -48,17 +48,22 @@
             <li><a href="#contact">Contact</a></li>
             <li><a href="/usuarios/">usuarios</a></li>
           </ul>
-            <form class="navbar-form navbar-right">
-                <button class="btn btn-success" type="submit">Entrar</button>
-                <button class="btn btn-success" type="submit">Entrar</button>
-            </form>
+          <div class="container-fluid">
+              <ul class="nav navbar-right">
+                <li>
+                    <p class="navbar-btn">
+                        <a href="/cadastro/" class="btn btn-success">Entrar</a>
+                    </p>
+                </li>
+              </ul>
+          </div>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-
         {% block content %}
         {% endblock %}
+
     <hr>
     <div class="container">
       <footer>

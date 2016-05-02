@@ -9,6 +9,7 @@
                         <th>Nome</th>
                         <th>CNPJ</th>
                         <th>Email</th>
+                        <th>IP</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,9 @@
                         </td>
                         <td>
                             {{ usuario.email }}
+                        </td>
+                        <td>
+                            {{ usuario.ip_user }}
                         </td>
                     </tr>
                 {% endfor %}

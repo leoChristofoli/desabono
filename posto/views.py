@@ -12,17 +12,10 @@ def index(request):
 
 
 def cadastro(request):
-    print('1')
-    print(request.method)
     if request.method == 'POST':
-        print('2')
-        print(request.method)
         form = form_credor(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             new_user = form.save(commit=False)
-            print('--------------------------------')
-            print(new_user)
             new_user.data_add = datetime.now()
             new_user.ip_user = '111.111.111.1'
             new_user.save()
