@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import form_credor
 from django.http import HttpResponseRedirect
 from datetime import datetime
+from .models import credor
 
 
 def index(request):
@@ -33,5 +34,9 @@ def cadastro(request):
             return HttpResponseRedirect('/')
     else:
         form = form_credor()
-
     return render(request, 'posto/cadastro.html', {'form': form})
+
+
+def credores(request):
+    usuarios = credor.objects.all()
+    return render(request, 'posto/users.html', {'usuarios': usuarios})

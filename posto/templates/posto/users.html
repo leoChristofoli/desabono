@@ -1,0 +1,35 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+{% if usuarios %}
+    <ul>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CNPJ</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>
+                            <li><a>{{ usuario.nome }}</a></li>
+                        </td>
+                        <td>
+                            {{ usuario.cnpj }}
+                        </td>
+                        <td>
+                            {{ usuario.email }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </ul>
+{% else %}
+    <p>No users</p>
+{% endif %}
+{% endblock %}
