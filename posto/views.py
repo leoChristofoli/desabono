@@ -19,11 +19,6 @@ def cadastro(request):
         form = form_credor(request.POST)
         print(form.is_valid())
         if form.is_valid():
-            nome = form.cleaned_data['nome']
-            cnpj = form.cleaned_data['cnpj']
-            endereco = form.cleaned_data['endereco']
-            email = form.cleaned_data['email']
-
             new_user = form.save(commit=False)
             print('--------------------------------')
             print(new_user)
