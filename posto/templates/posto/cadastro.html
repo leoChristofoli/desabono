@@ -6,9 +6,44 @@
             <form action="/cadastro/" method="post">
                     {% csrf_token %}
                 <div class="col-md-4">
-                    {{ form.as_p }}
-                    <input type="submit" value="Submit" />
-                </div>
+                        <div class="fieldWrapper">
+                            {{ form.nome.errors }}
+                            <label>{{form.nome.label_tag}}</label>
+                            {{form.nome}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {% if form.cnpj.errors %}
+                                {% for erro in form.cnpj.errors %}
+                                <ul>{{erro|escape}}</ul>
+                                <ul>{{erro}}</ul>
+                                {% endfor %}
+                            {% endif %}
+                            <label>{{form.cnpj.label_tag}}</label>
+                            {{form.cnpj}}
+                        </div>
+                    <br>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="fieldWrapper">
+                            {{ form.endereco.errors }}
+                            <label>{{form.endereco.label_tag}}</label>
+                            {{form.endereco}}
+                        </div>
+                    <br>
+                         <div class="fieldWrapper">
+                            {{ form.email.errors }}
+                            <label>{{form.email.label_tag}}</label>
+                            {{form.email}}
+                        </div>
+                    <br>
+                        <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                        </div>
+                    </div>
             </form>
         </div>
     </div>
