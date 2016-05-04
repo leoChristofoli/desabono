@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from posto.models import credor
 
+
 class divida(models.Model):
     credor_cnpj = models.ForeignKey(credor,
                                     on_delete=models.CASCADE)
@@ -32,3 +33,13 @@ class divida(models.Model):
                                    choices=tipo_choices,
                                    default=OUTRO)
     termos = models.BooleanField(default=False)
+
+
+class comentario(models.Model):
+    divida = models.ForeignKey(divida,
+                               on_delete=models.CASCADE)
+    credor = models.ForeignKey(credor,
+                               on_delete=models.CASCADE)
+    coment = models.CharField(max_length=8000,
+                              null=True)
+    data_add = models.DateField(null=True)
