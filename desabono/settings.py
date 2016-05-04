@@ -30,6 +30,7 @@ DEBUG = True
 
 INSTALLED_APPS = (
     'posto.apps.PostoConfig',
+    'divida.apps.DividaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
