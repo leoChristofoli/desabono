@@ -3,4 +3,5 @@ venv
 staticfiles
 *.sqlite3
 develop_settings.py
+*\migrations\*
 .idea*
