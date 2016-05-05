@@ -1,5 +1,7 @@
 from django.forms import ModelForm
+from django import forms
 from models import divida
+
 
 class form_divida(ModelForm):
     class Meta:
@@ -7,8 +9,10 @@ class form_divida(ModelForm):
         fields = ['credor_cnpj',
                   'valor',
                   'vencimento',
-                  'descricao',
                   'citado',
                   'tipo_divida',
                   'termos']
 
+
+class form_divida_descricao(forms.Form):
+    descricao = forms.CharField(max_length='8000')
