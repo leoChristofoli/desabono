@@ -18,6 +18,15 @@ class divida(models.Model):
         null=True,
         verbose_name='Valor da divida'
     )
+
+    nome_devedor = models.CharField(
+        max_length=2000,
+        null=True
+    )
+    ident_devedor = models.CharField(
+        max_length=100,
+        null=True
+    )
     vencimento = models.CharField(
         null=True,
         max_length=20,
