@@ -8,7 +8,7 @@
                 <div class="col-md-4">
                         <div class="fieldWrapper">
                             {{ form.nome.errors }}
-                            <label>{{form.nome.label_tag}}</label>
+                            <label>*{{form.nome.label_tag}}</label>
                             {{form.nome}}
                         </div>
                     <br>
@@ -19,12 +19,11 @@
                                 <ul>{{erro}}</ul>
                                 {% endfor %}
                             {% endif %}
-                            <label>{{form.cnpj.label_tag}}</label>
+                            <label>*{{form.cnpj.label_tag}}</label>
                             {{form.cnpj}}
                         </div>
                     <br>
                     </div>
-                    <div class="col-md-4">
                         <div class="fieldWrapper">
                             {{ form.endereco.errors }}
                             <label>{{form.endereco.label_tag}}</label>
@@ -32,9 +31,21 @@
                         </div>
                     <br>
                          <div class="fieldWrapper">
-                            {{ form.email.errors }}
-                            <label>{{form.email.label_tag}}</label>
-                            {{form.email}}
+                            {{ form_user.email.errors }}
+                            <label>*{{form_user.email.label_tag}}</label>
+                            {{form_user.email}}
+                        </div>
+                    <br>
+                         <div class="fieldWrapper">
+                            {{ form_user.password.errors }}
+                            <label>*Senha: </label>
+                            {{form_user.password}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {{ form_user.password_check.errors }}
+                            <label>*Digite a senha novamente: </label>
+                            {{form_user.password_check}}
                         </div>
                     <br>
                         <div class="row">
@@ -43,7 +54,6 @@
                             <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
                         </div>
                         </div>
-                    </div>
             </form>
         </div>
     </div>

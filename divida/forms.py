@@ -6,8 +6,7 @@ from models import divida
 class form_divida(ModelForm):
     class Meta:
         model = divida
-        fields = ['credor_cnpj',
-                  'valor',
+        fields = ['valor',
                   'vencimento',
                   'citado',
                   'tipo_divida',
