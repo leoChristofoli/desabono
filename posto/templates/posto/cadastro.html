@@ -13,6 +13,12 @@
                         </div>
                     <br>
                         <div class="fieldWrapper">
+                            {{ form.sobrenome.errors }}
+                            <label>*{{form.sobrenome.label_tag}}</label>
+                            {{form.sobrenome}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
                             {% if form.cnpj.errors %}
                                 {% for erro in form.cnpj.errors %}
                                 <ul>{{erro|escape}}</ul>
