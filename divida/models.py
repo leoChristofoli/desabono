@@ -2,12 +2,12 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from posto.models import credor
+from django.contrib.auth.models import User
 
 
 class divida(models.Model):
     credor_cnpj = models.ForeignKey(
-        credor,
+        User,
         on_delete=models.CASCADE,
         verbose_name='CNPJ do credor'
     )
@@ -77,7 +77,7 @@ class comentario(models.Model):
         on_delete=models.CASCADE
     )
     credor = models.ForeignKey(
-        credor,
+        User,
         on_delete=models.CASCADE
     )
     coment = models.CharField(

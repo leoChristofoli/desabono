@@ -1,0 +1,18 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+
+<hr>
+    <div class="container">
+        <div class="row">
+            {% if divida_var %}
+                {{ divida_var.descricao }}
+                {% if comentarios %}
+                    {% for i in comentarios %}
+                        {{ i.coment }}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

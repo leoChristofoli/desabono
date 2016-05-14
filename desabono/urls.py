@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^login/', usuario_views.login_view, name='login'),
     url(r'^logout/', usuario_views.logout_view, name='logout'),
     url(r'^user/(?P<user_id>[0-9]+)', usuario_views.user_view, name='user'),
+    url(r'^dividas/(?P<div_id>[0-9]+)', divida_views.divida_view, name='divida_detail'),
     url(r'^admin/', include(admin.site.urls)),
 ]
