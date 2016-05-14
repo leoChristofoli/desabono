@@ -47,7 +47,7 @@ def cadastro(request):
                 user.save()
                 new_user.email = user
             new_user.data_add = datetime.now()
-            new_user.ip_user = '111.111.111.1'
+            new_user.ip_user = get_ip(request)
             new_user.save()
             return HttpResponseRedirect('/')
     else:

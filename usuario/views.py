@@ -37,6 +37,11 @@ def logout_view(request):
 
 
 def user_view(request, user_id):
-    print str(user_id) + '======================'
-    user = User.objects.get(username=request.user)
-    return HttpResponseRedirect('/')
+    user = User.objects.get(id=user_id)
+    user_profile = credor.objects.get(email=user)
+    context = {
+        'user_profile': user_profile
+    }
+    template = 'usuario/detail.html'
+    return render(request, template, context)
+
