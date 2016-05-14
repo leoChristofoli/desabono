@@ -1,0 +1,47 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+{% if dividas %}
+    <ul>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>CNPJ Credor</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Tipo</th>
+                        <th>Citado</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for divida in dividas %}
+                    <tr>
+                        <td>
+                            <li><a>{{ divida.credor_cnpj.cnpj }}</a></li>
+                        </td>
+                        <td>
+                            {{ divida.data_add }}
+                        </td>
+                        <td>
+                            R${{ divida.valor }}
+                        </td>
+                        <td>
+                            {{ divida.tipo_divida }}
+                        </td>
+                        <td>
+                            {{ divida.citado }}
+                        </td>
+                        <td>
+                            {{ divida.descricao }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </ul>
+{% else %}
+    <p>No divs</p>
+{% endif %}
+{% endblock %}

@@ -2,10 +2,65 @@
 {% block content %}
 <hr>
     <div class="container">
-      <form action="/cadastro/" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-      </form>
+        <div class="row">
+            <form action="/cadastro/" method="post">
+                    {% csrf_token %}
+                <div class="col-md-4">
+                        <div class="fieldWrapper">
+                            {{ form.nome.errors }}
+                            <label>*{{form.nome.label_tag}}</label>
+                            {{form.nome}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {{ form.sobrenome.errors }}
+                            <label>*{{form.sobrenome.label_tag}}</label>
+                            {{form.sobrenome}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {% if form.cnpj.errors %}
+                                {% for erro in form.cnpj.errors %}
+                                <ul>{{erro|escape}}</ul>
+                                <ul>{{erro}}</ul>
+                                {% endfor %}
+                            {% endif %}
+                            <label>*{{form.cnpj.label_tag}}</label>
+                            {{form.cnpj}}
+                        </div>
+                    <br>
+                    </div>
+                        <div class="fieldWrapper">
+                            {{ form.endereco.errors }}
+                            <label>{{form.endereco.label_tag}}</label>
+                            {{form.endereco}}
+                        </div>
+                    <br>
+                         <div class="fieldWrapper">
+                            {{ form_user.email.errors }}
+                            <label>*{{form_user.email.label_tag}}</label>
+                            {{form_user.email}}
+                        </div>
+                    <br>
+                         <div class="fieldWrapper">
+                            {{ form_user.password.errors }}
+                            <label>*Senha: </label>
+                            {{form_user.password}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {{ form_user.password_check.errors }}
+                            <label>*Digite a senha novamente: </label>
+                            {{form_user.password_check}}
+                        </div>
+                    <br>
+                        <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                        </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

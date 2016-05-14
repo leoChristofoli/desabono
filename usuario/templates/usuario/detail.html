@@ -1,0 +1,13 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+
+<hr>
+    <div class="container">
+        <div class="row">
+            {% if user_profile %}
+                {{ user_profile.email }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
