@@ -18,15 +18,21 @@ def login_view(request):
                 if user.is_active:
                     login(request, user)
                     return HttpResponseRedirect('/')
+                else:
+                    form_errors = 'user'
             else:
-                return HttpResponseRedirect('/logon_fail')
+                form_errors = 'user'
+        else:
+            form_errors = form.errors
     else:
         form = form_user()
+        form_errors = ''
     return render(
         request,
         'usuario/logon.html',
         {
             'form': form,
+            'form_errors': form_errors
         }
         )
 

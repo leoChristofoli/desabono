@@ -5,14 +5,54 @@
     <div class="container">
         <div class="row">
             {% if divida_var %}
-                {{ divida_var.descricao }}
+                <label for="descricao_ini">Descrição: </label>
+                <p id="descricao_ini">{{ divida_var.descricao }}</p>
+            <br>
+            <label for="comments">Comentários</label>
+            <div class="row" id="comments">
                 {% if comentarios %}
-                    {% for i in comentarios %}
-                        {{ i.coment }}
-                    {% endfor %}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Comentário</th>
+                                <th>Credor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in comentarios %}
+                            <tr>
+                                <td>
+                                    <p>{{ i.coment }}</p>
+                                </td>
+                                <td>
+                                    <p>{{ i.credor }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 {% endif %}
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
 
+<hr>
+    <div class="container">
+        <div class="row">
+            <form action="{% url 'divida_detail' div_id %}" method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label for="descricao">Insira um comentário</label>
+                      <textarea class="form-control" rows="3" id="descricao" name="descricao"></textarea>
+                      max. 8000 caracteres
+                  </div>
+                    <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

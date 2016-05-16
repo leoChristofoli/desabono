@@ -1,10 +1,11 @@
+from datetime import datetime
+from django.utils import timezone
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import form_divida, form_divida_descricao
-from django.http import HttpResponseRedirect
-from datetime import datetime
-from .models import divida as m_divida
 from .models import comentario
-from django.contrib.auth.models import User
+from .models import divida as m_divida
 
 
 def divida(request):
@@ -31,9 +32,24 @@ def consulta_divida(request):
 
 def divida_view(request, div_id):
     divida_var = m_divida.objects.get(id=div_id)
+    if request.method == 'POST':
+        form = form_divida_descricao(request.POST)
+        print form.is_valid()
+        if form.is_valid():
+            com = form.cleaned_data['descricao']
+            print com
+            comentario.objects.create(
+                divida=divida_var,
+                credor=User.objects.get(id=request.user.id),
+                coment=com,
+                data_add=timezone.now()
+            )
+    else:
+        form = form_divida_descricao()
     comentarios = comentario.objects.filter(divida=divida_var)
     context = {
         'divida_var': divida_var,
+        'div_id': div_id,
         'comentarios': comentarios
     }
     return render(request, 'divida/divida_detail.html', context)

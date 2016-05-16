@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from datetime import datetime
 from .models import credor
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 def get_ip(request):
@@ -30,7 +31,6 @@ def cadastro(request):
         form_user = form_credor_user(request.POST)
 
         if form.is_valid() and form_user.is_valid():
-
             email = form_user.cleaned_data['email']
             pwd = form_user.cleaned_data['password']
             pwd_check = form_user.cleaned_data['password_check']
@@ -49,6 +49,14 @@ def cadastro(request):
             new_user.data_add = datetime.now()
             new_user.ip_user = get_ip(request)
             new_user.save()
+            logout(request)
+            user = authenticate(username=email, password=pwd)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
+            else:
+                return HttpResponseRedirect('/logon_fail')
             return HttpResponseRedirect('/')
     else:
         form = form_credor()
