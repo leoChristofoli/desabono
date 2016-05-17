@@ -3,9 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import form_divida, form_divida_descricao
+from .forms import form_divida,\
+    form_divida_descricao,\
+    form_divida_consulta
 from .models import comentario
 from .models import divida as m_divida
+from django.db.models import Q
 
 
 def divida(request):
@@ -26,18 +29,34 @@ def divida(request):
 
 
 def consulta_divida(request):
-    dividas = m_divida.objects.all()
-    return render(request, 'divida/consulta_divida.html', {'dividas': dividas})
+    dividas = m_divida.objects.all().order_by('data_add')[:10]
+    if request.method == 'POST':
+        form = form_divida_consulta(request.POST)
+        if form.is_valid():
+            search = form.cleaned_data['search']
+            dividas = m_divida.objects.filter(
+                Q(nome_devedor__contains=search) |
+                Q(ident_devedor__contains=search)
+            )
+    else:
+        form = form_divida_consulta()
+    return render(
+        request,
+        'divida/consulta_divida.html',
+        {
+            'dividas': dividas,
+            'form': form
+        }
+    )
 
 
 def divida_view(request, div_id):
     divida_var = m_divida.objects.get(id=div_id)
     if request.method == 'POST':
         form = form_divida_descricao(request.POST)
-        print form.is_valid()
         if form.is_valid():
             com = form.cleaned_data['descricao']
-            print com
+            print 'bool ' + str(form.cleaned_data['is_open'])
             comentario.objects.create(
                 divida=divida_var,
                 credor=User.objects.get(id=request.user.id),
@@ -50,7 +69,8 @@ def divida_view(request, div_id):
     context = {
         'divida_var': divida_var,
         'div_id': div_id,
-        'comentarios': comentarios
+        'comentarios': comentarios,
+        'form': form
     }
     return render(request, 'divida/divida_detail.html', context)
 

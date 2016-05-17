@@ -7,6 +7,8 @@
             {% if divida_var %}
                 <label for="descricao_ini">Descrição: </label>
                 <p id="descricao_ini">{{ divida_var.descricao }}</p>
+            <label for="divida_owns">Owner: </label>
+                <p id="divida_owns">{{ divida_var.credor_cnpj }}</p>
             <br>
             <label for="comments">Comentários</label>
             <div class="row" id="comments">
@@ -47,6 +49,14 @@
                       <textarea class="form-control" rows="3" id="descricao" name="descricao"></textarea>
                       max. 8000 caracteres
                   </div>
+                {% if request.user == divida_var.credor_cnpj %}
+                    <label for="is_open">A dívida foi paga</label>
+                    <select class="form-control" id="is_open" name="is_open">
+                        <option value="False">Não</option>
+                        <option value="True">Sim</option>
+                    </select>
+                    {{ form.errors }}
+                {% endif %}
                     <div class="row">
                     <div class="col-md-4">
                         <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
