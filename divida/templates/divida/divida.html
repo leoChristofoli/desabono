@@ -1,10 +1,32 @@
 {% extends 'posto/base.html' %}
 
 {% block content %}
+
+
+<script>
+function disableField() {
+    var x = document.getElementById("checkbox");
+    if (x.checked){
+        document.getElementById("disable").disabled = false;
+    }else{
+        document.getElementById("disable").disabled = true;
+    }
+}
+
+function undisableField() {
+    document.getElementById("disable").disabled = false;
+}
+</script>
+
+
 <hr>
     <div class="container">
         <div class="row">
+            <label>
+                <input type="checkbox" id="agree" onClick="disableField()"> Check me out
+            </label>
             <form action="/divida/" method="post" onsubmit="return validateForm()">
+                <fieldset disabled id="disable">
                     {% csrf_token %}
                 <div class="col-md-4">
                         <div class="fieldWrapper">
@@ -18,10 +40,11 @@
                       </div>
                         <div class="row">
                         <div class="col-md-4">
-                            <button type="submit" value="Submit" class="btn btn-primary" id="enviar">Enviar</button>
+                            <button type="submit" value="Submit" class="btn btn-primary" id="enviar" >Enviar</button>
                         </div>
                         </div>
                 </div>
+                    </fieldset>
             </form>
         </div>
     </div>

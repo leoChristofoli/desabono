@@ -1,13 +1,61 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-
+{% load staticfiles %}
+<!-- Custom styles for this template -->
+<link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
 <hr>
     <div class="container">
         <div class="row">
+            <!-- Jumbotron -->
+              <div class="col-md-4">
+                {% if user_profile %}
+                  <h3>Email: <small>{{ user_profile.email }}</small></h3>
+                {% endif %}
+              </div>
+            <div class="col-md-4">
+                {% if user_profile %}
+                  <h3>CNPJ: <small>{{ user_profile.cnpj }}</small></h3>
+                {% endif %}
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-md-4">
             {% if user_profile %}
-                {{ user_profile.email }}
+              <h3>Nome: <small>{{ user_profile.nome }} {{ user_profile.sobrenome }}</small></h3>
             {% endif %}
+            </div>
+        </div>
+
+
+        <hr>
+        <div class="row">
+            <div id="piechart" style="width: 450px; height: 250px;"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Abertas',     {{ dividas_abertas_count }}],
+          ['Encerradas',     {{ dividas_enc_count }}],
+        ]);
+
+        var options = {
+          title: 'Dívidas que você cadastrou: {{ dividas_count }}'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
 
 {% endblock %}

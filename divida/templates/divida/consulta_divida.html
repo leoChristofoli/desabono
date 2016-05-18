@@ -1,6 +1,6 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-{% if dividas %}
+
     <hr>
         <div class="container">
             <form action="{% url 'consulta_divida' %}" method="post">
@@ -10,6 +10,11 @@
                     <input type="text" class="form-control" id="search" name="search" placeholder="Nome ou CNPJ do devedor">
                       {{ form.search.errors }}
                   </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="inativos" id="inativos">Apenas dívidas em aberto
+                    </label>
+                </div>
                   <button type="submit" class="btn btn-default">Buscar</button>
             </form>
         </div>
@@ -20,6 +25,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome devedor</th>
+                        <th>Credor</th>
                         <th>CNPJ do devedor</th>
                         <th>Data</th>
                         <th>Valor</th>
@@ -37,6 +43,9 @@
                         </td>
                         <td>
                             {{ divida.credor_cnpj.first_name }}
+                        </td>
+                        <td>
+                            {{ divida.credor_cnpj }}
                         </td>
                         <td>
                             {{ divida.ident_devedor }}
@@ -69,7 +78,6 @@
             </table>
         </div>
     </hr>
-{% else %}
-    <p>No divs</p>
-{% endif %}
+
+
 {% endblock %}

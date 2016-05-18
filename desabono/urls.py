@@ -4,10 +4,12 @@ from posto import views as posto_views
 from divida import views as divida_views
 from usuario import views as usuario_views
 from django.contrib.auth import views as auth_views
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
-    url(r'^$', posto_views.index, name='index'),
+    url(r'^$', RedirectView.as_view(url='home'), name=''),
+    url(r'^home/', posto_views.index, name='index'),
     url(r'^cadastro/', posto_views.cadastro, name='cadastro'),
     url(r'^usuarios/', posto_views.credores, name='credores'),
     url(r'^divida/', divida_views.divida, name='divida'),

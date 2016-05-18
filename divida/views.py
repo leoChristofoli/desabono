@@ -41,6 +41,8 @@ def consulta_divida(request):
                 Q(nome_devedor__contains=search) |
                 Q(ident_devedor__contains=search)
             )
+            if form.cleaned_data['inativos'] == 'True':
+                dividas = dividas.filter(is_open=True)
     else:
         form = form_divida_consulta()
     return render(
@@ -77,7 +79,7 @@ def divida_view(request, div_id):
             c.save()
     else:
         form = form_divida_descricao()
-    comentarios = comentario.objects.filter(divida=divida_var)
+    comentarios = comentario.objects.filter(divida=divida_var).order_by('-data_add')
     context = {
         'divida_var': divida_var,
         'div_id': div_id,

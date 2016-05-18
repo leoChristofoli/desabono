@@ -21,7 +21,11 @@ def get_ip(request):
 
 def index(request):
     context = {}
-    template = 'posto/index.html'
+    print request.user.is_authenticated
+    if request.user.is_authenticated():
+        template = 'posto/index_log.html'
+    else:
+        template = 'posto/index.html'
     return render(request, template, context)
 
 
