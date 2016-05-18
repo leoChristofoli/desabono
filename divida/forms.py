@@ -12,8 +12,7 @@ class form_divida(ModelForm):
                   'ident_devedor',
                   'vencimento',
                   'citado',
-                  'tipo_divida',
-                  'termos']
+                  'tipo_divida']
 
 BOOL_CHOICES = (
     ('True', 'Sim'),

@@ -25,6 +25,9 @@
                                 <ul>{{erro}}</ul>
                                 {% endfor %}
                             {% endif %}
+                            {% if c_errors == 'cnpj' %}
+                                <h4>CNPJ Inválido</h4>
+                            {% endif %}
                             <label>*{{form.cnpj.label_tag}}</label>
                             {{form.cnpj}}
                         </div>

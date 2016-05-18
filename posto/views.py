@@ -5,6 +5,7 @@ from datetime import datetime
 from .models import credor
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from .cnpj import Cnpj
 
 
 def get_ip(request):
@@ -30,38 +31,44 @@ def index(request):
 
 
 def cadastro(request):
+    c_errors = ''
     if request.method == 'POST':
         form = form_credor(request.POST)
         form_user = form_credor_user(request.POST)
-
         if form.is_valid() and form_user.is_valid():
-            email = form_user.cleaned_data['email']
-            pwd = form_user.cleaned_data['password']
-            pwd_check = form_user.cleaned_data['password_check']
-            nome = form.cleaned_data['nome']
-            snome = form.cleaned_data['sobrenome']
-            new_user = form.save(commit=False)
-            if pwd == pwd_check:
-                user = User.objects.create_user(
-                    username=email,
-                    password=pwd,
-                    first_name=nome,
-                    last_name=snome
-                )
-                user.save()
-                new_user.email = user
-            new_user.data_add = datetime.now()
-            new_user.ip_user = get_ip(request)
-            new_user.save()
-            logout(request)
-            user = authenticate(username=email, password=pwd)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect('/')
+            cnpj_c = form.cleaned_data['cnpj']
+            if Cnpj().validate(cnpj_c):
+                email = form_user.cleaned_data['email']
+                pwd = form_user.cleaned_data['password']
+                pwd_check = form_user.cleaned_data['password_check']
+                nome = form.cleaned_data['nome']
+                snome = form.cleaned_data['sobrenome']
+                new_user = form.save(commit=False)
+                if pwd == pwd_check:
+                    user = User.objects.create_user(
+                        username=email,
+                        password=pwd,
+                        first_name=nome,
+                        last_name=snome
+                    )
+                    user.save()
+                    new_user.email = user
+                new_user.data_add = datetime.now()
+                new_user.ip_user = get_ip(request)
+                new_user.save()
+                logout(request)
+                user = authenticate(username=email, password=pwd)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        return HttpResponseRedirect('/')
+                else:
+                    return HttpResponseRedirect('/logon_fail')
+                return HttpResponseRedirect('/')
             else:
-                return HttpResponseRedirect('/logon_fail')
-            return HttpResponseRedirect('/')
+                c_errors = 'cnpj'
+                form = form_credor()
+                form_user = form_credor_user()
     else:
         form = form_credor()
         form_user = form_credor_user()
@@ -69,7 +76,8 @@ def cadastro(request):
                   'posto/cadastro.html',
                   {
                       'form': form,
-                      'form_user': form_user
+                      'form_user': form_user,
+                      'c_errors': c_errors
                   })
 
 

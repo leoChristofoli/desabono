@@ -69,7 +69,7 @@ class divida(models.Model):
         verbose_name='dívida ativa'
     )
     termos = models.BooleanField(
-        default=False,
+        default=True,
         verbose_name='Termos de uso'
     )
 
