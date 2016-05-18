@@ -15,7 +15,7 @@ class credor(models.Model):
         null=True
     )
     cnpj = models.CharField(
-        max_length=12,
+        max_length=18,
         null=True,
         unique=True
     )

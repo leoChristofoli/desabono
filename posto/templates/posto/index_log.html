@@ -1,0 +1,24 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<!-- Custom styles for this template -->
+<link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
+<hr>
+    <div class="container">
+        <div class="row">
+            <!-- Jumbotron -->
+              <div class="jumbotron">
+                <h1>Bem vindo de volta</h1>
+                <p class="lead">O que deseja fazer agora?</p>
+                  {% if user.is_authenticated %}
+                    <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar dívidas</a>
+                    <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Cadastrar uma nova dívida &raquo;</a>
+                  {% endif %}
+              </div>
+            {% if user_profile %}
+                {{ user_profile.email }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

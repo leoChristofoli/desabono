@@ -7,7 +7,11 @@
             <form action="/login/" method="post">
                     {% csrf_token %}
                 <div class="col-md-4">
+                    {% if form_errors == 'user' %}
+                        <p>Email ou senha inválido</p>
+                    {% endif %}
                     {{ form.as_p }}
+
                 </div>
                 <button type="submit" value="Submit" class="btn btn-primary">Entrar</button>
             </form>

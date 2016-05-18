@@ -1,0 +1,64 @@
+{% extends 'posto/base.html' %}
+{% block content %}
+<hr>
+    <div class="container">
+        <div class="row">
+            {% if divida_var %}
+                {% if divida_var.is_open %}
+                    <div class="alert alert-danger" role="alert">Dívida ainda aberta</div>
+                {% else %}
+                    <div class="alert alert-success" role="alert">Essa dívida foi encerrada</div>
+                {% endif %}
+                <label for="descricao_ini">Descrição: </label>
+                <p id="descricao_ini">{{ divida_var.descricao }}</p>
+            <label for="divida_owns">Owner: </label>
+                <p id="divida_owns">{{ divida_var.credor_cnpj.first_name }} {{ divida_var.credor_cnpj.last_name }}</p>
+            <hr>
+            <label for="comments">Comentários</label>
+            <div class="row" id="comments">
+                {% if comentarios %}
+                        {% for i in comentarios %}
+                            <blockquote>
+                                {% if i.foi_paga %}
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:green"> Pago</span>
+                                {% endif %}
+                                <p>{{ i.coment }}</p>
+                                <footer>{{ i.credor.first_name }} {{ i.credor.last_name }} -- {{ i.data_add }}</footer>
+                            </blockquote>
+                        {% endfor %}
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+<hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+            <form action="{% url 'divida_detail' div_id %}" method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label for="descricao">Insira um comentário</label>
+                      <textarea class="form-control" rows="3" id="descricao" name="descricao"></textarea>
+                      max. 8000 caracteres
+                  </div>
+                {% if request.user == divida_var.credor_cnpj and divida_var.is_open == True %}
+                    <label for="is_open">A dívida foi paga?</label>
+                    <select class="form-control" id="is_open" name="is_open">
+                        <option value="False"></option>
+                        <option value="False">Não</option>
+                        <option value="True">Sim</option>
+                    </select>
+                    {{ form.errors }}
+                {% endif %}
+                    <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

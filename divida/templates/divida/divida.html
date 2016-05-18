@@ -1,9 +1,30 @@
 {% extends 'posto/base.html' %}
+
 {% block content %}
+
+
+<script>
+function aceito(){
+    if (document.getElementById("disable1").disabled == false) {
+        document.getElementById("disable1").disabled = true;
+    } else {
+        document.getElementById("disable1").disabled = false;
+    }
+};
+</script>
+
+
 <hr>
     <div class="container">
         <div class="row">
-            <form action="/divida/" method="post">
+            {% if c_errors == 'cnpj' %}
+                <h3>CNPJ inválido</h3>
+            {% endif %}
+            <label>
+                <input type="checkbox" id="agree" onchange="aceito()"> Eu aceito os <a href="/">termos e condições</a>
+            </label>
+            <form action="/divida/" method="post" onsubmit="return validateForm()">
+                <fieldset disabled id="disable1">
                     {% csrf_token %}
                 <div class="col-md-4">
                         <div class="fieldWrapper">
@@ -17,11 +38,13 @@
                       </div>
                         <div class="row">
                         <div class="col-md-4">
-                            <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" value="Submit" class="btn btn-primary" id="enviar" >Enviar</button>
                         </div>
                         </div>
                 </div>
+                    </fieldset>
             </form>
         </div>
     </div>
+
 {% endblock %}

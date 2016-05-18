@@ -1,24 +1,54 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-{% if dividas %}
-    <ul>
+
+    <hr>
+        <div class="container">
+            <form action="{% url 'consulta_divida' %}" method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label for="search">Consulta</label>
+                    <input type="text" class="form-control" id="search" name="search" placeholder="Nome ou CNPJ do devedor">
+                      {{ form.search.errors }}
+                  </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="inativos" id="inativos">Apenas dívidas em aberto
+                    </label>
+                </div>
+                  <button type="submit" class="btn btn-default">Buscar</button>
+            </form>
+        </div>
+     <hr>
         <div class="container">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>CNPJ Credor</th>
+                        <th>ID</th>
+                        <th>Nome devedor</th>
+                        <th>Credor</th>
+                        <th>CNPJ do devedor</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Tipo</th>
-                        <th>Citado</th>
+                        <th>Nome do credor</th>
                         <th>Descrição</th>
+                        <th>Situação</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for divida in dividas %}
                     <tr>
                         <td>
-                            <li><a>{{ divida.credor_cnpj.cnpj }}</a></li>
+                            <li><a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a></li>
+                        </td>
+                        <td>
+                            {{ divida.credor_cnpj.first_name }}
+                        </td>
+                        <td>
+                            {{ divida.credor_cnpj }}
+                        </td>
+                        <td>
+                            {{ divida.ident_devedor }}
                         </td>
                         <td>
                             {{ divida.data_add }}
@@ -30,18 +60,24 @@
                             {{ divida.tipo_divida }}
                         </td>
                         <td>
-                            {{ divida.citado }}
+                            {{ divida.nome_devedor }}
                         </td>
                         <td>
                             {{ divida.descricao }}
+                        </td>
+                        <td>
+                            {% if divida.is_open %}
+                                Em aberto
+                            {% else %}
+                                Paga
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-    </ul>
-{% else %}
-    <p>No divs</p>
-{% endif %}
+    </hr>
+
+
 {% endblock %}
