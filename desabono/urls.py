@@ -3,6 +3,8 @@ from django.contrib import admin
 from posto import views as posto_views
 from divida import views as divida_views
 from usuario import views as usuario_views
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     url(r'^$', posto_views.index, name='index'),
@@ -10,9 +12,10 @@ urlpatterns = [
     url(r'^usuarios/', posto_views.credores, name='credores'),
     url(r'^divida/', divida_views.divida, name='divida'),
     url(r'^consulta_divida/', divida_views.consulta_divida, name='consulta_divida'),
-    url(r'^login/', usuario_views.login_view, name='login'),
+    #url(r'^login/', usuario_views.login_view, name='login'),
     url(r'^logout/', usuario_views.logout_view, name='logout'),
     url(r'^user/(?P<user_id>[0-9]+)', usuario_views.user_view, name='user'),
     url(r'^dividas/(?P<div_id>[0-9]+)', divida_views.divida_view, name='divida_detail'),
+    url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^admin/', include(admin.site.urls)),
 ]

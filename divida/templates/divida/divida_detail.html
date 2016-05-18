@@ -5,34 +5,28 @@
     <div class="container">
         <div class="row">
             {% if divida_var %}
+                {% if divida_var.is_open %}
+                    <div class="alert alert-danger" role="alert">Dívida ainda aberta</div>
+                {% else %}
+                    <div class="alert alert-success" role="alert">Essa dívida foi encerrada</div>
+                {% endif %}
                 <label for="descricao_ini">Descrição: </label>
                 <p id="descricao_ini">{{ divida_var.descricao }}</p>
             <label for="divida_owns">Owner: </label>
                 <p id="divida_owns">{{ divida_var.credor_cnpj }}</p>
-            <br>
+            <hr>
             <label for="comments">Comentários</label>
             <div class="row" id="comments">
                 {% if comentarios %}
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Comentário</th>
-                                <th>Credor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
                         {% for i in comentarios %}
-                            <tr>
-                                <td>
-                                    <p>{{ i.coment }}</p>
-                                </td>
-                                <td>
-                                    <p>{{ i.credor }}</p>
-                                </td>
-                            </tr>
+                            <blockquote>
+                                {% if i.foi_paga %}
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:green"> Pago</span>
+                                {% endif %}
+                                <p>{{ i.coment }}</p>
+                                <footer>{{ i.credor }}</footer>
+                            </blockquote>
                         {% endfor %}
-                        </tbody>
-                    </table>
                 {% endif %}
                 {% endif %}
             </div>
@@ -42,6 +36,7 @@
 <hr>
     <div class="container">
         <div class="row">
+            <div class="col-xs-6 col-md-4">
             <form action="{% url 'divida_detail' div_id %}" method="post">
                 {% csrf_token %}
                   <div class="form-group">
@@ -63,6 +58,7 @@
                     </div>
                     </div>
             </form>
+            </div>
         </div>
     </div>
 {% endblock %}

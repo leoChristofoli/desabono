@@ -19,20 +19,21 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome do credor</th>
+                        <th>Nome devedor</th>
                         <th>CNPJ do devedor</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Tipo</th>
-                        <th>Nome devedor</th>
+                        <th>Nome do credor</th>
                         <th>Descrição</th>
+                        <th>Situação</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for divida in dividas %}
                     <tr>
                         <td>
-                            <li><a href="{% url 'divida_detail' divida.id %}">{{ divida.id }}</a></li>
+                            <li><a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a></li>
                         </td>
                         <td>
                             {{ divida.credor_cnpj.first_name }}
@@ -56,7 +57,11 @@
                             {{ divida.descricao }}
                         </td>
                         <td>
-                            {{ divida.is_open }}
+                            {% if divida.is_open %}
+                                Em aberto
+                            {% else %}
+                                Paga
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -17,11 +17,11 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect(request.POST.get('next'))
                 else:
-                    form_errors = 'user'
+                    form_errors = form.errors
             else:
-                form_errors = 'user'
+                form_errors = form.errors
         else:
             form_errors = form.errors
     else:

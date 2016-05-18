@@ -9,8 +9,10 @@ from .forms import form_divida,\
 from .models import comentario
 from .models import divida as m_divida
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def divida(request):
     if request.method == 'POST':
         form = form_divida(request.POST)
@@ -28,6 +30,7 @@ def divida(request):
     return render(request, 'divida/divida.html', {'form': form})
 
 
+@login_required
 def consulta_divida(request):
     dividas = m_divida.objects.all().order_by('data_add')[:10]
     if request.method == 'POST':
@@ -49,20 +52,29 @@ def consulta_divida(request):
         }
     )
 
-
+@login_required
 def divida_view(request, div_id):
     divida_var = m_divida.objects.get(id=div_id)
     if request.method == 'POST':
         form = form_divida_descricao(request.POST)
         if form.is_valid():
             com = form.cleaned_data['descricao']
-            print 'bool ' + str(form.cleaned_data['is_open'])
-            comentario.objects.create(
+            pago = form.cleaned_data['is_open']
+            print pago
+            c = comentario(
                 divida=divida_var,
                 credor=User.objects.get(id=request.user.id),
                 coment=com,
                 data_add=timezone.now()
             )
+            if pago == 'True':
+                print '1'
+                divida_var.is_open = False
+                divida_var.save()
+                c.foi_paga = True
+            else:
+                c.foi_paga = False
+            c.save()
     else:
         form = form_divida_descricao()
     comentarios = comentario.objects.filter(divida=divida_var)
