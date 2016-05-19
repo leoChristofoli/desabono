@@ -19,6 +19,12 @@
                         </div>
                     <br>
                         <div class="fieldWrapper">
+                            {{ form.empresa.errors }}
+                            <label>*{{form.empresa.label_tag}}</label>
+                            {{form.empresa}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
                             {% if form.cnpj.errors %}
                                 {% for erro in form.cnpj.errors %}
                                 <ul>{{erro|escape}}</ul>

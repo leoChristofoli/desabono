@@ -23,7 +23,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nome devedor</th>
                         <th>Credor</th>
                         <th>CNPJ do devedor</th>
@@ -42,7 +41,7 @@
                             <a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a>
                         </td>
                         <td>
-                            {{ divida.credor_cnpj.first_name }}
+                            {{ divida.nome_devedor }}
                         </td>
                         <td>
                             {{ divida.credor_cnpj }}
