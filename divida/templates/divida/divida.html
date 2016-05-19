@@ -21,7 +21,7 @@ function aceito(){
                 <h3>CNPJ inválido</h3>
             {% endif %}
             <label>
-                <input type="checkbox" id="agree" onchange="aceito()"> Eu aceito os <a href="/">termos e condições</a>
+                <input type="checkbox" id="agree" onchange="aceito()"> Li e aceito os <a href=# data-toggle="modal" data-target="#modal_termos">termos e condições</a>
             </label>
             <form action="/divida/" method="post" onsubmit="return validateForm()">
                 <fieldset disabled id="disable1">
@@ -47,4 +47,22 @@ function aceito(){
         </div>
     </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modal_termos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Termos e condições
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
