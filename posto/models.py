@@ -19,6 +19,11 @@ class credor(models.Model):
         null=True,
         unique=True
     )
+    empresa = models.CharField(
+        max_length=1000,
+        null=True,
+        verbose_name='nome da empresa'
+    )
     endereco = models.CharField(
         max_length=8000,
         blank=True,

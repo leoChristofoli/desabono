@@ -15,7 +15,11 @@ import re
 
 
 def multi_split(val_string):
-    return ';'.join(re.split("; |, |\*|\n|", val_string.replace('\r', '')))
+    a = re.split("; |, |\*|\n|", val_string)
+    lista = []
+    for i in a:
+        lista.append(i.strip())
+    return ';'.join(lista)
 
 
 @login_required
