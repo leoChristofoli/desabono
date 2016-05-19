@@ -11,6 +11,11 @@ from .models import divida as m_divida
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .cnpj import Cnpj
+import re
+
+
+def multi_split(val_string):
+    return ';'.join(re.split("; |, |\*|\n|", val_string.replace('\r', '')))
 
 
 @login_required
@@ -27,6 +32,8 @@ def divida(request):
                 new_divida.credor_cnpj = User.objects.get(id=request.user.id)
                 new_divida.data_add = datetime.now()
                 new_divida.descricao = new_divida_desc
+                citados = form.cleaned_data['citados']
+                new_divida.citados = multi_split(val_string=citados)
                 new_divida.save()
                 return HttpResponseRedirect('/consulta_divida')
             else:
@@ -68,6 +75,10 @@ def consulta_divida(request):
 @login_required
 def divida_view(request, div_id):
     divida_var = m_divida.objects.get(id=div_id)
+    if divida_var.citados is not None:
+        divida_var.citados_as_list = divida_var.citados.split(';')
+    else:
+        divida_var.citados_as_list = ''
     if request.method == 'POST':
         form = form_divida_descricao(request.POST)
         if form.is_valid():

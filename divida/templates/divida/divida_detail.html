@@ -13,6 +13,14 @@
                 <p id="descricao_ini">{{ divida_var.descricao }}</p>
             <label for="divida_owns">Owner: </label>
                 <p id="divida_owns">{{ divida_var.credor_cnpj.first_name }} {{ divida_var.credor_cnpj.last_name }}</p>
+            <label for="citados">Citados: </label>
+                <div id="citados">
+                    <h4>
+                        {% for citado in divida_var.citados_as_list %}
+                            {{ citado }},
+                        {% endfor %}
+                    </h4>
+                </div>
             <hr>
             <label for="comments">Comentários</label>
             <div class="row" id="comments">

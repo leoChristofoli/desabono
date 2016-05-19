@@ -39,7 +39,7 @@
                 {% for divida in dividas %}
                     <tr>
                         <td>
-                            <li><a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a></li>
+                            <a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a>
                         </td>
                         <td>
                             {{ divida.credor_cnpj.first_name }}
