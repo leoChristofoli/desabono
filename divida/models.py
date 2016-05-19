@@ -29,9 +29,8 @@ class divida(models.Model):
         null=True,
         verbose_name='cnpj do devedor'
     )
-    vencimento = models.CharField(
+    vencimento = models.DateField(
         null=True,
-        max_length=20,
         verbose_name='Vencimento da dívida'
     )
     descricao = models.CharField(
@@ -39,10 +38,10 @@ class divida(models.Model):
         null=True,
         verbose_name='Descrição'
     )
-    citado = models.CharField(
+    citados = models.CharField(
         max_length=8000,
         null=True,
-        verbose_name='Citado'
+        verbose_name='Citados'
     )
 
     DUPLICIDATE = 'DV'
