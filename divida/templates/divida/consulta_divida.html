@@ -1,8 +1,34 @@
 {% extends 'posto/base.html' %}
 {% block content %}
+<script>
+function dividaPaga(id){
+    var y = id.cells[9].innerHTML.toUpperCase().trim();
+    if(y == "PAGA"){
+        if(id.className == "success"){
+            id.className = "active";
+        }else{
+            id.className = "success";
+        }
+    }
+}
+
+function foiPaga(){
+    var x = document.getElementsByTagName("tr");
+    for(e=0; e < x.length; e++){
+        var y = x[e].cells[9].innerHTML.toUpperCase().trim();
+        if(y == "PAGA"){
+            x[e].cells[9].className = "success";
+        }else if(y == "EM ABERTO"){
+            x[e].cells[9].className = "warning";
+        }
+    }
+}
+
+
+</script>
 
     <hr>
-        <div class="container">
+        <div class="container" onmouseover="foiPaga()">
             <form action="{% url 'consulta_divida' %}" method="post">
                 {% csrf_token %}
                   <div class="form-group">
@@ -20,9 +46,11 @@
         </div>
      <hr>
         <div class="container">
-            <table class="table table-striped">
+            <div class="table-responsive">
+            <table class="table table-hover" id="table">
                 <thead>
                     <tr>
+                        <th> </th>
                         <th>Nome devedor</th>
                         <th>Credor</th>
                         <th>CNPJ do devedor</th>
@@ -30,11 +58,11 @@
                         <th>Valor</th>
                         <th>Tipo</th>
                         <th>Nome do credor</th>
-                        <th>Descrição</th>
+                        <th id="teste">Descrição</th>
                         <th>Situação</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="linhas">
                 {% for divida in dividas %}
                     <tr>
                         <td>
@@ -64,19 +92,21 @@
                         <td>
                             {{ divida.descricao }}
                         </td>
-                        <td>
+                        <td id="sit">
                             {% if divida.is_open %}
                                 Em aberto
                             {% else %}
                                 Paga
                             {% endif %}
+
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-    </hr>
+        </div>
+<br>
 
 
 {% endblock %}
