@@ -22,20 +22,27 @@
                     </h4>
                 </div>
             <hr>
-            <label for="comments">Comentários</label>
-            <div class="row" id="comments">
-                {% if comentarios %}
-                        {% for i in comentarios %}
-                            <blockquote>
-                                {% if i.foi_paga %}
-                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:green"> Pago</span>
-                                {% endif %}
-                                <p>{{ i.coment }}</p>
-                                <footer>{{ i.credor.first_name }} {{ i.credor.last_name }} -- {{ i.data_add }}</footer>
-                            </blockquote>
-                        {% endfor %}
-                {% endif %}
-                {% endif %}
+            <label for="comments">
+                <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                <a role="button" data-toggle="collapse" href="#com" aria-expanded="false" aria-controls="com">
+                    Ver comentários ({{comentarios|length}})
+                </a>
+            </label>
+            <div class="collapse" id="com">
+                <div class="row" id="comments">
+                    {% if comentarios %}
+                            {% for i in comentarios %}
+                                <blockquote>
+                                    {% if i.foi_paga %}
+                                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color:green"> Pago</span>
+                                    {% endif %}
+                                    <p>{{ i.coment }}</p>
+                                    <footer>{{ i.credor.first_name }} {{ i.credor.last_name }} -- {{ i.data_add }}</footer>
+                                </blockquote>
+                            {% endfor %}
+                    {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
