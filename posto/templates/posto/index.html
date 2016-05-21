@@ -1,35 +1,97 @@
 {% extends 'posto/base.html' %}
 {% block content %}
+{% load staticfiles %}
+  <style>
+    .jumbotron{
+        /*background-image:url({% static 'img/calc_coins.jpg' %});*/
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size: cover;
+        height: 100vh;
+        margin-bottom:0px;
+        background-color:transparent ;
+        background-color:rgba(0, 0, 0, 0.5);
+        }
+
+    body {
+        border-top: 0px solid #E47541;
+        border-bottom: 0px solid #E47541;
+        /*min-height: 5000px;*/
+        /*min-width: 5000px;*/
+        background: url({% static 'img/calc_coins.jpg' %}) no-repeat center center fixed;
+        /*background-color:none !important;*/
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: conver;
+        background-size: cover;
+        /*background-image: url('{% static "img/beach.jpg" %}');*/
+        /*background-image:url('https://lh4.googleusercontent.com/-FsgMNhfQLSg/AAAAAAAAAAI/AAAAAAAAaRY/3VnF3vSuWKk/photo.jpg');*/
+        /*background-repeat: repeat-x;*/
+      }
+    .fill {
+        min-height: 100%;
+        height: 100%;
+        }
+</style>
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Bem vindo!</h1>
-        <p>Tenha acesso à um registro completo de dividendos e proteja sua empresa</p>
-        <p><a class="btn btn-primary btn-lg" href="/cadastro/" role="button">Cadastre-se &raquo;</a></p>
-      </div>
-    </div>
+    <div class="bg"></div>
+    <div class="jumbotron" id="Inicio">
+          <div class="container push-spaces text-center">
+            <h1 style="color: white">Software para sua Factoring ou FIDC!</h1>
+            <p style="color: white">Tenha acesso à um registro completo de dividendos e proteja sua empresa</p>
+                <div class="col-xs-6 col-md-4"></div>
+                <div class="col-xs-6 col-md-4">
+                    <p><a class="btn btn-primary btn-lg btn-block" href="/cadastro/" role="button">Cadastre-se &raquo;</a></p>
+                </div>
+          </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="text-center">
+            <a href="#Consulta">
+                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
+            </a>
+        </div>
+        </div>
 
-    <div class="container">
+
+    <div class="container-fluid" style="background-color: white;" id="Consulta">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4">
-          <h2>Cadastre dívidas</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Consulte</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="/consulta_divida/" role="button">Consulte &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Comente</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
+          <div class="text-center">
+            <h2>Consulta</h2>
+              <h3>Nullam quis risus eget urna mollis ornare vel eu leo.
+                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                  Nullam id dolor id nibh ultricies vehicula.
+                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+                    Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
+                  porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+                  eget lacinia odio sem nec elit.</h3>
+          </div>
+      </div>
+      <hr>
+
+    </div> <!-- /container -->
+    <div class="container-fluid" style="background-color: white;" id="Registro">
+      <!-- Example row of columns -->
+      <div class="row">
+          <div class="text-center">
+            <h2>Registro</h2>
+              <h3>Nullam quis risus eget urna mollis ornare vel eu leo.
+                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                  Nullam id dolor id nibh ultricies vehicula.
+                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+                    Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
+                  porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+                  eget lacinia odio sem nec elit.</h3>
+          </div>
       </div>
       <hr>
     </div> <!-- /container -->
+
 {% endblock %}

@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+
+<style>
+.footer
+{
+    height: 100%;
+}
+</style>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -43,9 +51,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href=#Inicio>Home</a></li>
+            <li><a href="#Consulta">Consulte</a></li>
+            <li><a href="#Registro">Registre</a></li>
             <li><a href="/usuarios/">usuarios</a></li>
           </ul>
           <div class="container-fluid">
@@ -73,12 +81,11 @@
         {% block content %}
         {% endblock %}
 
-    <hr>
-    <div class="container">
+
+    <div class="container-fluid" style="background-color: white;">
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>
       </footer>
-
     </div><!-- /.container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -88,5 +95,34 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script>
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".navbar", offset: 50});
+
+  // Add smooth scrolling on all links inside the navbar
+  $("#navbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    }  // End if
+  });
+});
+</script>
+
   </body>
 </html>
