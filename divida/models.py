@@ -18,7 +18,6 @@ class divida(models.Model):
         null=True,
         verbose_name='Valor da divida'
     )
-
     nome_devedor = models.CharField(
         max_length=2000,
         null=True,
@@ -50,7 +49,7 @@ class divida(models.Model):
     JUROS = 'JP'
     OUTRO = 'OT'
     tipo_choices = (
-        (DUPLICIDATE, 'Duplicidade'),
+        (DUPLICIDATE, 'Duplicata'),
         (CHEQUE, 'Cheque devolvido'),
         (SALDO, 'Saldo devedor'),
         (JUROS, 'Juros não pagos'),

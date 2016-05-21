@@ -1,6 +1,7 @@
 {% extends 'posto/base.html' %}
 {% block content %}
 <script>
+
 function dividaPaga(id){
     var y = id.cells[9].innerHTML.toUpperCase().trim();
     if(y == "PAGA"){
@@ -23,8 +24,6 @@ function foiPaga(){
         }
     }
 }
-
-
 </script>
 
     <hr>
@@ -45,7 +44,7 @@ function foiPaga(){
             </form>
         </div>
      <hr>
-        <div class="container">
+        <div class="container" onmouseover="foiPaga()">
             <div class="table-responsive">
             <table class="table table-hover" id="table">
                 <thead>
@@ -107,6 +106,5 @@ function foiPaga(){
         </div>
         </div>
 <br>
-
 
 {% endblock %}
