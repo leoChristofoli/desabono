@@ -6,6 +6,8 @@ from .models import credor
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .cnpj import Cnpj
+from django.db import IntegrityError
+
 
 
 def get_ip(request):
@@ -22,7 +24,7 @@ def get_ip(request):
 
 def index(request):
     context = {}
-    print request.user.is_authenticated
+    print(request.user.is_authenticated)
     if request.user.is_authenticated():
         template = 'posto/index_log.html'
     else:
@@ -45,14 +47,22 @@ def cadastro(request):
                 snome = form.cleaned_data['sobrenome']
                 new_user = form.save(commit=False)
                 if pwd == pwd_check:
-                    user = User.objects.create_user(
-                        username=email,
-                        password=pwd,
-                        first_name=nome,
-                        last_name=snome
-                    )
-                    user.save()
-                    new_user.email = user
+                    try:
+                        user = User.objects.create_user(
+                            username=email,
+                            password=pwd,
+                            first_name=nome,
+                            last_name=snome
+                        )
+                        user.save()
+                        new_user.email = user
+                    except IntegrityError as e:
+                        c_errors = 'email'
+                        return render(request,'posto/cadastro.html', {
+                            'form': form,
+                            'form_user': form_user,
+                            'c_errors': c_errors
+                        })
                 new_user.data_add = datetime.now()
                 new_user.ip_user = get_ip(request)
                 new_user.save()

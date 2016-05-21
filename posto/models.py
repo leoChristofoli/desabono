@@ -17,7 +17,7 @@ class credor(models.Model):
     cnpj = models.CharField(
         max_length=18,
         null=True,
-        unique=True
+        unique=False
     )
     empresa = models.CharField(
         max_length=1000,
@@ -46,4 +46,23 @@ class credor(models.Model):
     )
     data_add = models.DateTimeField(
         null=True
+    )
+    FACTORING = 'FAC'
+    FIDC = 'FDC'
+    SECURIZADORA = 'SEC'
+    OUTRO = 'OTR'
+
+    tipo_choices = (
+        (FACTORING, 'Factoring'),
+        (FIDC, 'FIDC'),
+        (SECURIZADORA, 'Securizadora'),
+        (OUTRO, 'Outro'),
+    )
+
+    tipo_empresa = models.CharField(
+        max_length=3,
+        null=True,
+        choices=tipo_choices,
+        default=OUTRO,
+        verbose_name='Tipo de empresa'
     )

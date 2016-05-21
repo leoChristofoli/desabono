@@ -12,7 +12,7 @@
                 <p class="lead">O que deseja fazer agora?</p>
                   {% if user.is_authenticated %}
                     <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar dívidas</a>
-                    <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Cadastrar uma nova dívida &raquo;</a>
+                    <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registro de restrição financeira &raquo;</a>
                   {% endif %}
               </div>
             {% if user_profile %}
@@ -20,5 +20,4 @@
             {% endif %}
         </div>
     </div>
-
 {% endblock %}

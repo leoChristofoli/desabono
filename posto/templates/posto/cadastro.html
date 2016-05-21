@@ -6,17 +6,7 @@
             <form action="/cadastro/" method="post">
                     {% csrf_token %}
                 <div class="col-md-4">
-                        <div class="fieldWrapper">
-                            {{ form.nome.errors }}
-                            <label>*{{form.nome.label_tag}}</label>
-                            {{form.nome}}
-                        </div>
-                    <br>
-                        <div class="fieldWrapper">
-                            {{ form.sobrenome.errors }}
-                            <label>*{{form.sobrenome.label_tag}}</label>
-                            {{form.sobrenome}}
-                        </div>
+                    {{ form.non_field_errors }}
                     <br>
                         <div class="fieldWrapper">
                             {{ form.empresa.errors }}
@@ -38,6 +28,24 @@
                             {{form.cnpj}}
                         </div>
                     <br>
+                        <div class="fieldWrapper">
+                            {{ form.tipo_empresa.errors }}
+                            <label>*{{form.tipo_empresa.label_tag}}</label>
+                            {{form.tipo_empresa}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {{ form.nome.errors }}
+                            <label>*{{form.nome.label_tag}}</label>
+                            {{form.nome}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
+                            {{ form.sobrenome.errors }}
+                            <label>*{{form.sobrenome.label_tag}}</label>
+                            {{form.sobrenome}}
+                        </div>
+                    <br>
                     </div>
                         <div class="fieldWrapper">
                             {{ form.endereco.errors }}
@@ -49,6 +57,9 @@
                             {{ form_user.email.errors }}
                             <label>*{{form_user.email.label_tag}}</label>
                             {{form_user.email}}
+                             {% if c_errors == 'email' %}
+                                <h4>Esse email já foi cadastrado - <a href="{% url 'forgot_pass' %}">esqueci minha senha</a></h4>
+                             {% endif %}
                         </div>
                     <br>
                          <div class="fieldWrapper">
@@ -65,9 +76,9 @@
                     <br>
                         <div class="row">
                         <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
-                        </div>
+                            <div class="col-md-4">
+                                <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                            </div>
                         </div>
             </form>
         </div>
