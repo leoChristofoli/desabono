@@ -5,7 +5,7 @@ from django import forms
 class form_credor(ModelForm):
     class Meta:
         model = credor
-        fields = ['nome', 'sobrenome', 'empresa', 'tipo_empresa', 'cnpj', 'endereco']
+        fields = ['nome', 'sobrenome', 'empresa', 'tipo_empresa', 'cargo',  'cnpj', 'endereco']
 
 
 class form_credor_user(forms.Form):

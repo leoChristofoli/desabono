@@ -58,11 +58,15 @@ class credor(models.Model):
         (SECURIZADORA, 'Securizadora'),
         (OUTRO, 'Outro'),
     )
-
     tipo_empresa = models.CharField(
         max_length=3,
         null=True,
         choices=tipo_choices,
         default=OUTRO,
         verbose_name='Tipo de empresa'
+    )
+    cargo = models.CharField(
+        max_length=100,
+        null=True,
+        verbose_name='Cargo na empresa'
     )

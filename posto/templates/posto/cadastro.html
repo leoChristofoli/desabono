@@ -35,6 +35,12 @@
                         </div>
                     <br>
                         <div class="fieldWrapper">
+                            {{ form.cargo.errors }}
+                            <label>*{{form.cargo.label_tag}}</label>
+                            {{form.cargo}}
+                        </div>
+                    <br>
+                        <div class="fieldWrapper">
                             {{ form.nome.errors }}
                             <label>*{{form.nome.label_tag}}</label>
                             {{form.nome}}
