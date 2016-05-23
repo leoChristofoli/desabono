@@ -18,80 +18,191 @@
         border-bottom: 0px solid #E47541;
         /*min-height: 5000px;*/
         /*min-width: 5000px;*/
-        background: url({% static 'img/calc_coins.jpg' %}) no-repeat center center fixed;
+        /*background: url({% static 'img/calc_coins.jpg' %}) fixed;*/
         /*background-color:none !important;*/
         -webkit-background-size: cover;
         -moz-background-size: cover;
-        -o-background-size: conver;
+        -o-background-size: cover;
         background-size: cover;
-        /*background-image: url('{% static "img/beach.jpg" %}');*/
-        /*background-image:url('https://lh4.googleusercontent.com/-FsgMNhfQLSg/AAAAAAAAAAI/AAAAAAAAaRY/3VnF3vSuWKk/photo.jpg');*/
-        /*background-repeat: repeat-x;*/
+        background-position: top;
+        background-repeat: no-repeat;
       }
     .fill {
         min-height: 100%;
         height: 100%;
         }
+      section.module.parallax {
+          height: 300px;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+        }
+
+      section.module.parallax-1 {
+            background-image: url({% static 'img/search.jpg' %});
+        }
+
+      section.module.parallax-2 {
+            background-image: url({% static 'img/calc_pen.jpg' %});
+            background-color:rgba(0, 0, 0, 0.5);
+        }
+      section.module.parallax-0 {
+            background-image: url({% static 'img/calc_coins.jpg' %});
+            height: 100vh;
+            background-size: cover;
+        }
+
+      section.module.parallax h1 {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 48px;
+          line-height: 250px;
+          font-weight: 700;
+          text-align: center;
+          text-transform: uppercase;
+          text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+      section.module.content{
+            margin-bottom: 100;
+            padding: 40px 0;
+
+      }
 </style>
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="bg"></div>
-    <div class="jumbotron" id="Inicio">
-          <div class="container push-spaces text-center">
-            <h1 style="color: white">Software para sua Factoring ou FIDC!</h1>
-            <p style="color: white">Tenha acesso à um registro completo de dividendos e proteja sua empresa</p>
-                <div class="col-xs-6 col-md-4"></div>
-                <div class="col-xs-6 col-md-4">
-                    <p><a class="btn btn-primary btn-lg btn-block" href="/cadastro/" role="button">Cadastre-se &raquo;</a></p>
+
+    <section class="module parallax parallax-0" id="">
+        <div class="jumbotron" id="Inicio">
+              <div class="container push-spaces text-center">
+                <h1 style="color: white">Software para sua Factoring ou FIDC!</h1>
+                <p style="color: white">Tenha acesso à um registro completo de dividendos e proteja sua empresa</p>
+                    <div class="col-xs-6 col-md-4"></div>
+                    <div class="col-xs-6 col-md-4">
+                        <p><a class="btn btn-primary btn-lg btn-block" href="/cadastro/" role="button">Comece a usar &raquo;</a></p>
+                    </div>
+              </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="text-center">
+                <a href="#Consulta">
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
+                </a>
+            </div>
+            </div>
+        </section>
+
+    <section class="module content content-1" id="con1">
+        <div class="container-fluid text-center" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1>Lorem Ipsum Dolor</h1>
+                        <p class="text-justify"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil consequuntur, nesciunt dicta, esse rem ducimus itaque quis.
+                            Adipisci ullam nam qui illum debitis sit ad in delectus, repudiandae non dolorum! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Suscipit veritatis, facere aliquid itaque tempore consequatur nihil sint enim aliquam id saepe magnam totam repellat placeat a fugit nulla molestias voluptas.</p>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta cum distinctio eum asperiores rem enim fugit eaque voluptas est laboriosam in repudiandae architecto placeat,
+                            illum atque quasi explicabo, culpa, molestias!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit voluptas, aperiam quae provident, recusandae rem quis.
+                            Ut quaerat, quasi iste voluptate et dolorem atque sed neque voluptates, molestias dolor enim!</p>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam odit tempore, quibusdam impedit deserunt. Natus quisquam, facilis numquam, molestias nesciunt modi,
+                            at debitis maxime sunt et
+                            quo quas labore perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde delectus laborum doloremque recusandae,
+                            debitis maxime a! Nihil distinctio ex, cumque tempore ea voluptas omnis odit, quaerat natus nam excepturi corporis!</p>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eius harum atque unde nihil aut quam provident sunt, iste error
+                            vitae suscipit dolores cupiditate totam, eum quae alias! Dicta, nisi.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Voluptate beatae impedit officia quis odit rerum sequi, explicabo commodi illum suscipit, tempore eum doloremque quae obcaecati tempora
+                            quidem neque sapiente modi?.</p>
                 </div>
-          </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="text-center">
-            <a href="#Consulta">
-                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
-            </a>
+            </div>
         </div>
+    </section>
+
+    <section class="module parallax parallax-1" id="Consulta">
+        <div class="container">
+            <h1>Consulta</h1>
         </div>
+    </section>
 
-
-    <div class="container-fluid" style="background-color: white;" id="Consulta">
-      <!-- Example row of columns -->
-      <div class="row">
-          <div class="text-center">
-            <h2>Consulta</h2>
-              <h3>Nullam quis risus eget urna mollis ornare vel eu leo.
-                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                  Nullam id dolor id nibh ultricies vehicula.
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-                    Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
-                  porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-                  eget lacinia odio sem nec elit.</h3>
+    <section class="module content content-2" id="con2">
+        <div class="container-fluid" style="background-color: white;" >
+          <!-- Example row of columns -->
+          <div class="row">
+              <div class="text-center">
+                  <div class="col-md-4">
+                      <span class="glyphicon glyphicon-euro" aria-hidden="true" style="font-size:2.5em; color: black"></span>
+                      <h3>Nullam</h3>
+                          <small>quis risus eget urna mollis ornare vel eu leo.
+                              Cum sociis natoque penatibus et magnis dis parturient montes,
+                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+                              Cum sociis natoque </small>
+                  </div>
+                  <div class="col-md-4">
+                      <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:2.5em; color: black"></span>
+                      <h3>Nullam</h3>
+                          <small>quis risus eget urna mollis ornare vel eu leo.
+                              Cum sociis natoque penatibus et magnis dis parturient montes,
+                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+                              Cum sociis natoque </small>
+                  </div>
+                  <div class="col-md-4">
+                      <span class="glyphicon glyphicon-phone" aria-hidden="true" style="font-size:2.5em; color: black"></span>
+                      <h3>Nullam</h3>
+                          <small>quis risus eget urna mollis ornare vel eu leo.
+                              Cum sociis natoque penatibus et magnis dis parturient montes,
+                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+                              Cum sociis natoque </small>
+                  </div>
+              </div>
           </div>
-      </div>
-      <hr>
+        </div> <!-- /container -->
+    </section>
 
-    </div> <!-- /container -->
-    <div class="container-fluid" style="background-color: white;" id="Registro">
-      <!-- Example row of columns -->
-      <div class="row">
-          <div class="text-center">
-            <h2>Registro</h2>
-              <h3>Nullam quis risus eget urna mollis ornare vel eu leo.
-                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                  Nullam id dolor id nibh ultricies vehicula.
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-                    Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
-                  porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-                  eget lacinia odio sem nec elit.</h3>
+
+
+    <section class="module parallax parallax-2" id="Registro">
+        <div class="container">
+            <h1>Registro</h1>
+        </div>
+    </section>
+
+    <section class="module content content-3" id="con3">
+        <div class="container-fluid" style="background-color: white;" >
+          <!-- Example row of columns -->
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="text-center">
+                    <h3>Registro</h3>
+                      <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.
+                          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                          Nullam id dolor id nibh ultricies vehicula.
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+                            Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
+                          porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+                          eget lacinia odio sem nec elit.</p>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="text-center">
+                    <h3>Registro</h3>
+                      <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.
+                          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                          Nullam id dolor id nibh ultricies vehicula.
+                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+                            Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
+                          porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+                          eget lacinia odio sem nec elit.</p>
+                  </div>
+              </div>
           </div>
-      </div>
-      <hr>
-    </div> <!-- /container -->
+          <hr>
+        </div> <!-- /container -->
+    </section>
 
 {% endblock %}
