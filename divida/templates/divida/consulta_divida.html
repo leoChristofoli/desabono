@@ -11,6 +11,13 @@ function dividaPaga(id){
             id.className = "success";
         }
     }
+    if(y == "EM ABERTO"){
+        if(id.className == "warning"){
+            id.className = "active";
+        }else{
+            id.className = "warning";
+        }
+    }
 }
 
 function foiPaga(){
@@ -25,6 +32,12 @@ function foiPaga(){
     }
 }
 </script>
+
+<style>
+    tr {
+        line-height: 25px;
+    }
+</style>
 
     <hr>
         <div class="container" onmouseover="foiPaga()">
@@ -62,22 +75,26 @@ function foiPaga(){
                     </tr>
                 </thead>
                 <tbody id="linhas">
-                {% for divida in dividas %}
-                    <tr>
+                {% for divida in div_page %}
+                    <tr onmouseover="dividaPaga(this)" onmouseout="dividaPaga(this)">
                         <td>
                             <a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a>
                         </td>
                         <td>
-                            {{ divida.nome_devedor }}
+                            <div style="height: cover; overflow:auto; width: 100px">
+                                {{ divida.nome_devedor }}
+                            </div>
                         </td>
                         <td>
-                            {{ divida.credor_cnpj }}
+                            {{ divida.credor_cnpj.first_name }} {{ divida.credor_cnpj.last_name }}
                         </td>
                         <td>
                             {{ divida.ident_devedor }}
                         </td>
                         <td>
-                            {{ divida.data_add }}
+                            <div style="height: cover; overflow:auto; width: 100px">
+                                {{ divida.data_add }}
+                            </div>
                         </td>
                         <td>
                             R${{ divida.valor }}
@@ -89,7 +106,9 @@ function foiPaga(){
                             {{ divida.nome_devedor }}
                         </td>
                         <td>
-                            {{ divida.descricao }}
+                            <div style="height: 50px; overflow:auto;">
+                                {{ divida.descricao|truncatewords:10 }}
+                            </div>
                         </td>
                         <td id="sit">
                             {% if divida.is_open %}
@@ -104,7 +123,58 @@ function foiPaga(){
                 </tbody>
             </table>
         </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if div_page.has_previous %}
+                        <a href="?page={{ div_page.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ div_page.number }} of {{ div_page.paginator.num_pages }}.
+                    </span>
+
+                    {% if div_page.has_next %}
+                        <a href="?page={{ div_page.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
 <br>
+
+<nav>
+  <ul class="pagination">
+    {% if div_page.has_previous %}
+        <li>
+            <a href="?page={{ div_page.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled"><a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        </a></li>
+    {% endif %}
+
+        <li><a href="?page=1">1</a></li>
+        <li><a href="?page=2">2</a></li>
+        <li><a href="?page=3">3</a></li>
+        <li><a href="?page=4">4</a></li>
+        <li><a href="?page=5">5</a></li>
+        <li><a href="?page={{ div_page.end_index }}">last</a></li>
+
+      {% if div_page.has_next %}
+            <li>
+                <a href="?page={{ div_page.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled"><a href="#" aria-label="Next">
+            <span aria-hidden="true">&laquo;</span>
+            </a></li>
+        {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}

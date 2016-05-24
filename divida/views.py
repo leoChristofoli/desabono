@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .cnpj import Cnpj
 import re
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def multi_split(val_string):
@@ -67,12 +68,24 @@ def consulta_divida(request):
                 dividas = dividas.filter(is_open=True)
     else:
         form = form_divida_consulta()
+
+    paginator = Paginator(dividas, 5)
+
+    page = request.GET.get('page')
+    try:
+        div_page = paginator.page(page)
+    except PageNotAnInteger:
+        div_page = paginator.page(1)
+    except EmptyPage:
+        div_page = paginator.page(paginator.num_pages)
+
     return render(
         request,
         'divida/consulta_divida.html',
         {
             'dividas': dividas,
-            'form': form
+            'form': form,
+            'div_page': div_page
         }
     )
 

@@ -59,7 +59,7 @@
           <div class="container-fluid">
               <ul class="nav navbar-nav navbar-right">
                   {% if user.is_authenticated %}
-                    <li><a href="{% url 'user' request.user.id %}">{{ request.user }}</a></li>
+                    <li><a href="{% url 'user' request.user.id %}">{{ request.user.first_name }} {{ request.user.last_name }}</a></li>
                     <li>
                         <p class="navbar-btn">
                             <a href="/logout/" class="btn btn-default">Sair</a>

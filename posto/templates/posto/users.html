@@ -1,7 +1,6 @@
 {% extends 'posto/base.html' %}
 {% block content %}
 {% if usuarios %}
-    <ul>
         <div class="container">
             <table class="table table-striped">
                 <thead>
@@ -10,6 +9,7 @@
                         <th>CNPJ</th>
                         <th>Email</th>
                         <th>IP</th>
+                        <th>ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,6 @@
                 </tbody>
             </table>
         </div>
-    </ul>
 {% else %}
     <p>No users</p>
 {% endif %}
