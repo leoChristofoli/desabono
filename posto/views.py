@@ -3,6 +3,7 @@ from .forms import form_credor, form_credor_user
 from django.http import HttpResponseRedirect
 from datetime import datetime
 from .models import credor
+from divida.models import divida as divida_model
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .cnpj import Cnpj
@@ -23,7 +24,10 @@ def get_ip(request):
 
 
 def index(request):
-    context = {}
+    dividas_count = divida_model.objects.count()
+    context = {
+        'dividas_count': dividas_count
+    }
     print(request.user.is_authenticated)
     if request.user.is_authenticated():
         template = 'posto/index_log.html'
