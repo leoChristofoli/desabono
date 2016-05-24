@@ -9,19 +9,66 @@
                 {% else %}
                     <div class="alert alert-success" role="alert">Essa dívida foi encerrada</div>
                 {% endif %}
-                <label for="descricao_ini">Descrição: </label>
-                <p id="descricao_ini">{{ divida_var.descricao }}</p>
-            <label for="divida_owns">Owner: </label>
-                <p id="divida_owns">{{ divida_var.credor_cnpj.first_name }} {{ divida_var.credor_cnpj.last_name }}</p>
-            <label for="citados">Citados: </label>
-                <div id="citados">
-                    <h4>
-                        {% for citado in divida_var.citados_as_list %}
-                            {{ citado }},
-                        {% endfor %}
-                    </h4>
+
+            <div class="col-md-4">
+            <div id="owner">
+                <h3 id="divida_owns">Owner: <small>{{ divida_var.credor_cnpj.first_name }} {{ divida_var.credor_cnpj.last_name }}</small></h3>
+            </div>
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <h3>Nome do devedor: <small>{{ divida_var.nome_devedor }}</small></h3>
                 </div>
-            <hr>
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <h3>Adicionado em: <small>{{ divida_var.data_add }}</small></h3>
+                </div>
+            </div>
+
+        </div><!--row-->
+        <div class="row">
+
+            <div class="col-md-4">
+            <div>
+                <h3 id="">Valor: <small>R${{ divida_var.valor }}</small></h3>
+            </div>
+            </div>
+
+            <div class="col-md-4">
+                <h3>Citados: <small>
+                            {% for citado in divida_var.citados_as_list %}
+                                {{ citado }},
+                            {% endfor %}</small>
+                        </h3>
+            </div>
+
+            <div class="col-md-4">
+                <div class="text-left" id="a">
+                        <h3>CNPJ do devedor <small>{{ divida_var.ident_devedor }}</small></h3>
+                </div>
+            </div>
+
+        </div><!--row-->
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Vencida em: <small>{{ divida_var.vencimento }}</small></h3>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="descricao_ini">Descrição: </label>
+                <p class="text-justify" id="descricao_ini">{{ divida_var.descricao }}</p>
+            </div>
+        </div><!--row-->
+
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
             <label for="comments">
                 <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                 <a role="button" data-toggle="collapse" href="#com" aria-expanded="false" aria-controls="com">
@@ -44,7 +91,8 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+            </div>
+        </div><!--row-->
     </div>
 
 <hr>
