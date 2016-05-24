@@ -85,7 +85,8 @@ def consulta_divida(request):
         {
             'dividas': dividas,
             'form': form,
-            'div_page': div_page
+            'div_page': div_page,
+            'paginator': paginator
         }
     )
 
