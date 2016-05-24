@@ -139,7 +139,7 @@ function foiPaga(){
                     {% endif %}
                 </span>
             </div>
-        </div>
+
 <br>
 
 <nav>
@@ -156,11 +156,10 @@ function foiPaga(){
         </a></li>
     {% endif %}
 
-        <li><a href="?page=1">1</a></li>
-        <li><a href="?page=2">2</a></li>
-        <li><a href="?page=3">3</a></li>
-        <li><a href="?page=4">4</a></li>
-        <li><a href="?page=5">5</a></li>
+    {% for page in paginator.page_range %}
+        <li><a href="?page={{page}}">{{ page }}</a></li>
+      {% endfor %}
+      <li><a href="#">...</a></li>
         <li><a href="?page={{ div_page.end_index }}">last</a></li>
 
       {% if div_page.has_next %}
@@ -176,5 +175,6 @@ function foiPaga(){
         {% endif %}
   </ul>
 </nav>
+        </div>
 
 {% endblock %}
