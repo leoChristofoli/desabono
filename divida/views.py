@@ -69,7 +69,7 @@ def consulta_divida(request):
     else:
         form = form_divida_consulta()
 
-    paginator = Paginator(dividas, 5)
+    paginator = Paginator(dividas, 20)
 
     page = request.GET.get('page')
     try:

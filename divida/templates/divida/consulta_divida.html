@@ -6,14 +6,14 @@ function dividaPaga(id){
     var y = id.cells[9].innerHTML.toUpperCase().trim();
     if(y == "PAGA"){
         if(id.className == "success"){
-            id.className = "active";
+            id.className = "";
         }else{
             id.className = "success";
         }
     }
     if(y == "EM ABERTO"){
         if(id.className == "warning"){
-            id.className = "active";
+            id.className = "";
         }else{
             id.className = "warning";
         }
@@ -124,57 +124,41 @@ function foiPaga(){
             </table>
         </div>
 
-            <div class="pagination">
-                <span class="step-links">
-                    {% if div_page.has_previous %}
-                        <a href="?page={{ div_page.previous_page_number }}">previous</a>
+            <nav>
+              <ul class="pagination">
+                {% if div_page.has_previous %}
+                    <li>
+                        <a href="?page={{ div_page.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a></li>
+                {% endif %}
+
+                {% for page in paginator.page_range %}
+                    <li><a href="?page={{page}}">{{ page }}</a></li>
+                {% endfor %}
+                  {% if paginator.num_pages > 5 %}
+                      <li><a href="#">...</a></li>
+                        <li><a href="?page={{ div_page.end_index }}">last</a></li>
+                  {% endif %}
+
+                  {% if div_page.has_next %}
+                        <li>
+                            <a href="?page={{ div_page.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a></li>
                     {% endif %}
-
-                    <span class="current">
-                        Page {{ div_page.number }} of {{ div_page.paginator.num_pages }}.
-                    </span>
-
-                    {% if div_page.has_next %}
-                        <a href="?page={{ div_page.next_page_number }}">next</a>
-                    {% endif %}
-                </span>
-            </div>
-
-<br>
-
-<nav>
-  <ul class="pagination">
-    {% if div_page.has_previous %}
-        <li>
-            <a href="?page={{ div_page.previous_page_number }}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-    {% else %}
-        <li class="disabled"><a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        </a></li>
-    {% endif %}
-
-    {% for page in paginator.page_range %}
-        <li><a href="?page={{page}}">{{ page }}</a></li>
-      {% endfor %}
-      <li><a href="#">...</a></li>
-        <li><a href="?page={{ div_page.end_index }}">last</a></li>
-
-      {% if div_page.has_next %}
-            <li>
-                <a href="?page={{ div_page.next_page_number }}" aria-label="Next">
-                <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-        {% else %}
-            <li class="disabled"><a href="#" aria-label="Next">
-            <span aria-hidden="true">&laquo;</span>
-            </a></li>
-        {% endif %}
-  </ul>
-</nav>
+              </ul>
+            </nav>
         </div>
 
 {% endblock %}
