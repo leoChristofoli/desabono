@@ -1,4 +1,5 @@
 {% extends 'posto/base.html' %}
+
 {% block content %}
 {% load staticfiles %}
   <style>
@@ -68,10 +69,17 @@
 
       }
 </style>
+
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="bg"></div>
+
+
+        {% block nav %}
+            {% include 'posto/nav-ul.html' %}
+        {% endblock %}
+
 
     <section class="module parallax parallax-0" id="">
         <div class="jumbotron" id="Inicio">
@@ -90,7 +98,7 @@
             <br>
             <br>
             <div class="text-center">
-                <a href="#Consulta">
+                <a id="t" href="#Consulta">
                     <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
                 </a>
             </div>
@@ -104,21 +112,51 @@
                     <h1>Restrições cadastradas: {{ dividas_count }}</h1>
                         <p class="text-justify"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil consequuntur, nesciunt dicta, esse rem ducimus itaque quis.
                             Adipisci ullam nam qui illum debitis sit ad in delectus, repudiandae non dolorum! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Suscipit veritatis, facere aliquid itaque tempore consequatur nihil sint enim aliquam id saepe magnam totam repellat placeat a fugit nulla molestias voluptas.</p>
-                        <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta cum distinctio eum asperiores rem enim fugit eaque voluptas est laboriosam in repudiandae architecto placeat,
-                            illum atque quasi explicabo, culpa, molestias!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit voluptas, aperiam quae provident, recusandae rem quis.
-                            Ut quaerat, quasi iste voluptate et dolorem atque sed neque voluptates, molestias dolor enim!</p>
-                        <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam odit tempore, quibusdam impedit deserunt. Natus quisquam, facilis numquam, molestias nesciunt modi,
-                            at debitis maxime sunt et
-                            quo quas labore perferendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde delectus laborum doloremque recusandae,
-                            debitis maxime a! Nihil distinctio ex, cumque tempore ea voluptas omnis odit, quaerat natus nam excepturi corporis!</p>
-                        <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eius harum atque unde nihil aut quam provident sunt, iste error
-                            vitae suscipit dolores cupiditate totam, eum quae alias! Dicta, nisi.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Voluptate beatae impedit officia quis odit rerum sequi, explicabo commodi illum suscipit, tempore eum doloremque quae obcaecati tempora
-                            quidem neque sapiente modi?.</p>
+                            Suscipit veritatis, facere aliquid itaque tempore consequatur nihil sint
+                            enim aliquam id saepe magnam totam repellat placeat a fugit nulla molestias voluptas.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="fa fa-money fa-5x" style="color: blue"></i>
+                    <h3>Lorem</h3>
+                    <p class="text-justify">
+                        Dicunt vocibus ei eam. At adipisci accusamus repudiandae mea, vide iusto et has. Nec no elitr imperdiet,
+                        ea novum aliquam duo. An mel iisque gubergren signiferumque, est platonem deseruisse definiebas eu,
+                        te eum eleifend oportere repudiandae.
+                    </p>
+                    <img src="{% static 'img/tbl.png' %}" class="img-responsive" alt="...">
+                    <!--
+                    <div align="center" class="embed-responsive embed-responsive-16by9">
+                        <video autoplay loop class="embed-responsive-item">
+                            <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    //-->
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-mobile fa-5x"></i>
+                    <h3>Ipsum</h3>
+                    <p class="text-justify">
+                        An tempor altera civibus ius. Dicunt laoreet signiferumque per te.
+                        Duo ei natum soleat delenit. Ex vis choro perfecto torquatos,
+                        aliquid inciderint eloquentiam no sit.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                    <h3>Copiosae</h3>
+                    <p class="text-justify">
+                        Ea copiosae constituto nec, in inermis consetetur eum. Sit quis facilis
+                        reprehendunt ad, est in clita ubique labore. Mei id vitae ocurreret, pri omnes doming qualisque ex.
+                        Et etiam inermis vis. Has lorem legere delicata cu, pro ad melius senserit,
+                        ne qui malorum perfecto philosophia.
+                    </p>
                 </div>
             </div>
         </div>

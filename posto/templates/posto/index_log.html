@@ -3,6 +3,13 @@
 {% load staticfiles %}
 <!-- Custom styles for this template -->
 <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
+
+
+            {% block nav %}
+                {% include 'posto/nav-ul-logged.html' %}
+            {% endblock %}
+
+
 <hr>
     <div class="container">
         <div class="row">
