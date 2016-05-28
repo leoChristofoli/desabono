@@ -70,3 +70,10 @@ class credor(models.Model):
         null=True,
         verbose_name='Cargo na empresa'
     )
+
+    def __str__(self):
+        return "{nome} {sobrenome} @{empresa}".format(
+            nome=self.nome,
+            sobrenome=self.sobrenome,
+            empresa=self.empresa
+        )

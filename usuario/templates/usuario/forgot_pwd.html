@@ -3,31 +3,24 @@
 
 <hr>
     <div class="container">
-        <form action="{% url 'login' %}" method="post">
+        <form action="{% url 'forgot_pass' %}" method="post">
                 {% csrf_token %}
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     {% if form_errors  %}
                         {% for erro in form.errors %}
                             <h1>{{ erro }}</h1>
                         {% endfor %}
                     {% endif %}
-                    {{ form.as_p }}
+                    <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">Email usado no cadastro</label>
+                    {{ form.email }}
+                    <br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <input type="hidden" name="next" value="{{ next }}" />
-                    <button type="submit" value="Submit" class="btn btn-primary">Entrar</button>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-4">
-                    <ul class="list-unstyled">
-                        <li><a href="{% url 'cadastro' %}">Ainda não sou cadastrado</a></li>
-                        <li><a href="{% url 'forgot_pass' %}">Esqueci minha senha</a></li>
-                    </ul>
+                    <button type="submit" value="Submit" class="btn btn-primary">Alterar minha senha e enviar por email</button>
                 </div>
             </div>
         </form>

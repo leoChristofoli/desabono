@@ -71,6 +71,9 @@ class divida(models.Model):
         verbose_name='Termos de uso'
     )
 
+    def __str__(self):
+        return "{id}, {nome}".format(id=self.id, nome=self.nome_devedor)
+
 
 class comentario(models.Model):
     divida = models.ForeignKey(
@@ -86,7 +89,9 @@ class comentario(models.Model):
         null=True,
         verbose_name='Descrição'
     )
-    data_add = models.DateField(null=True)
+    data_add = models.DateField(
+        null=True
+    )
     foi_paga = models.BooleanField(
         default=False,
         verbose_name='Foi paga'

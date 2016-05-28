@@ -84,8 +84,17 @@
     <section class="module parallax parallax-0" id="">
         <div class="jumbotron" id="Inicio">
               <div class="container push-spaces text-center">
-                <h2 style="color: white; font-size: 90px">Software para sua Factoring ou FIDC!</h2>
-                <p style="color: white">Tenha acesso à um registro completo de dividendos e proteja sua empresa</p>
+                  <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <h2 style="color: white; font-size: 90px">Bem vindo!</h2>
+                    </div>
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <h4 style="color: white; font-size: 90px">Essa é sua rede de informantes</h4>
+                          </div>
+                      </div>
+                  </div>
+                <p style="color: white">Aqui você pode registrar ou ver as informações de outros informantes</p>
                     <div class="col-xs-6 col-md-4"></div>
                     <div class="col-xs-6 col-md-4">
                         <p><a class="btn btn-primary btn-lg btn-block" href="/cadastro/" role="button">Comece a usar &raquo;</a></p>
@@ -94,26 +103,27 @@
             <br>
             <br>
             <br>
-            <br>
-            <br>
-            <br>
             <div class="text-center">
-                <a id="t" href="#Consulta">
+                <a id="t" href="#About">
                     <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
                 </a>
             </div>
             </div>
         </section>
 
-    <section class="module content content-1" id="con1">
+    <section class="module content content-1" id="About">
         <div class="container-fluid text-center" style="background-color: white;">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h1>Restrições cadastradas: {{ dividas_count }}</h1>
-                        <p class="text-justify"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil consequuntur, nesciunt dicta, esse rem ducimus itaque quis.
-                            Adipisci ullam nam qui illum debitis sit ad in delectus, repudiandae non dolorum! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Suscipit veritatis, facere aliquid itaque tempore consequatur nihil sint
-                            enim aliquam id saepe magnam totam repellat placeat a fugit nulla molestias voluptas.</p>
+                    <p class="text-justify" style="font-size: 20px">
+                        O Desabono é uma rede de informações destinadas a empresas de factorings, FIDCs, securitizadoras,
+                        enfim todas as empresas que operam no mercado financeiro e têm a necessidadde de registrar rapidamente
+                        algum desabono ou irregularidade de seus clientes a fim de fazer um alerta aos outros integrantes dessa
+                        rede para se precaverem.
+                    </p>
+                    <p class="text-justify" style="font-size: 20px">
+                        O registro de desabonos ou restrições é e sempre será <strong style="font-size: 23px">GRATUITO</strong>
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -123,14 +133,22 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <i class="fa fa-money fa-5x" style="color: blue"></i>
-                    <h3>Lorem</h3>
-                    <p class="text-justify">
-                        Dicunt vocibus ei eam. At adipisci accusamus repudiandae mea, vide iusto et has. Nec no elitr imperdiet,
-                        ea novum aliquam duo. An mel iisque gubergren signiferumque, est platonem deseruisse definiebas eu,
-                        te eum eleifend oportere repudiandae.
-                    </p>
-                    <img src="{% static 'img/tbl.png' %}" class="img-responsive" alt="...">
+                    <i class="fa fa-pencil-square-o fa-5x"></i>
+                    <h3>Registros</h3>
+                    <p class="text-center">
+                        Você pode registrar de forma totalmente gratuita restrições ou desabonos:</p>
+                    <div class="text-center">
+                        <ul class="list-unstyled">
+                            <li>Protestos</li>
+                            <li>Atraso no pagamento de títulos</li>
+                            <li>Saldo devedor em contas gráficas</li>
+                            <li>Mercadorias que não foram entregues</li>
+                            <li>Falta de performance em operações de fomento</li>
+                        </ul>
+                    </div>
+                    <p class="text-center">E ainda qualquer outros fatos que voce ache importante relatar, pois as informções são feitas de modo textual.</p>
+
+                    <!--<img src="{% static 'img/tbl.png' %}" class="img-responsive" alt="...">-->
                     <!--
                     <div align="center" class="embed-responsive embed-responsive-16by9">
                         <video autoplay loop class="embed-responsive-item">
@@ -140,23 +158,21 @@
                     //-->
                 </div>
                 <div class="col-md-4">
-                    <i class="fa fa-mobile fa-5x"></i>
-                    <h3>Ipsum</h3>
+                    <i class="fa fa-quote-left fa-5x"></i>    <i class="fa fa-quote-right fa-5x"></i>
+                    <h3>Citações</h3>
                     <p class="text-justify">
-                        An tempor altera civibus ius. Dicunt laoreet signiferumque per te.
-                        Duo ei natum soleat delenit. Ex vis choro perfecto torquatos,
-                        aliquid inciderint eloquentiam no sit.
+                        Além das empresas devedoras você pode citar e registrar ás pessoas fisicas envolvidas no processo,
+                        sejam que tenham dado confirmação falsa de títulos, financeiros ou consultores que agiram de má fé.
+                        Porém é importante ressaltar que as informações ou declarações prestadas são de sua responsabilidade
+                        portanto sejam cautelosos ao registra-las
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <i class="fa fa-clock-o fa-5x"></i>
-                    <h3>Copiosae</h3>
-                    <p class="text-justify">
-                        Ea copiosae constituto nec, in inermis consetetur eum. Sit quis facilis
-                        reprehendunt ad, est in clita ubique labore. Mei id vitae ocurreret, pri omnes doming qualisque ex.
-                        Et etiam inermis vis. Has lorem legere delicata cu, pro ad melius senserit,
-                        ne qui malorum perfecto philosophia.
-                    </p>
+                    <i class="fa fa-eye fa-5x"></i>
+                    <h3>Atualmente temos
+                    {{ dividas_count }}
+                    registros de desabonos</h3>
+                    <p><a class="btn btn-default btn-lg btn-block" href="/cadastro/" role="button">Cadastre-se e comece a usar &raquo;</a></p>
                 </div>
             </div>
         </div>

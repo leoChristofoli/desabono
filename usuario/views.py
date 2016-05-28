@@ -1,12 +1,16 @@
+# coding=utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from datetime import datetime
-from .forms import form_user
+from .forms import form_user, form_forgot
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from posto.models import credor
 from divida.models import divida as divida_model
 from django.contrib.auth.decorators import login_required, user_passes_test
+import string
+import random
+from django.core.mail import send_mail
 
 
 def login_view(request):
@@ -68,5 +72,30 @@ def user_view(request, user_id):
     else:
         context = {}
     template = 'usuario/detail.html'
+    return render(request, template, context)
+
+
+def pass_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+def forgot_pass_view(request):
+    if request.method == 'POST':
+        form = form_forgot(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            user = User.objects.get(username=email)
+            print(user)
+            senha = pass_generator()
+            user.set_password(senha)
+            send_mail('Senha desabono', 'Sua nova senha do desabono.com é {pwd}'.format(pwd=senha), 'desabonotm@gmail.com',
+                      [user.username, ], fail_silently=False)
+            user.save()
+    else:
+        form = form_forgot()
+    context = {
+        'form': form
+    }
+    template = 'usuario/forgot_pwd.html'
     return render(request, template, context)
 

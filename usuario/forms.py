@@ -10,3 +10,9 @@ class form_user(forms.Form):
             max_length=100,
             widget=forms.PasswordInput
         )
+
+
+class form_forgot(forms.Form):
+    email = forms.EmailField(
+        max_length=200
+    )
