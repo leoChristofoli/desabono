@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='home'), name=''),
     url(r'^home/', posto_views.index, name='index'),
     url(r'^cadastro/', posto_views.cadastro, name='cadastro'),
-    url(r'^forgot_pass/', posto_views.cadastro, name='forgot_pass'),
+    url(r'^forgotPass/', usuario_views.forgot_pass_view, name='forgot_pass'),
     url(r'^usuarios/', posto_views.credores, name='credores'),
     url(r'^divida/', divida_views.divida, name='divida'),
     url(r'^consulta_divida/', divida_views.consulta_divida, name='consulta_divida'),
