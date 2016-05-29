@@ -1,9 +1,22 @@
 {% extends 'posto/base.html' %}
 {% block content %}
 
-<hr>
-    <div class="container">
-        <form action="{% url 'login' %}" method="post">
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+
+<style>
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgb(255, 255, 255);
+}
+
+</style>
+
+    <div class="container" id="div1">
+        <form action="{% url 'login' %}" method="post" class="form-signin">
+            <h2 class="form-signin-heading">Acesse sua conta</h2>
                 {% csrf_token %}
             <div class="row">
                 <div class="col-md-4">
@@ -23,7 +36,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <ul class="list-unstyled">
                         <li><a href="{% url 'cadastro' %}">Ainda não sou cadastrado</a></li>
                         <li><a href="{% url 'forgot_pass' %}">Esqueci minha senha</a></li>
