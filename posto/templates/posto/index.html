@@ -68,6 +68,27 @@
             padding: 40px 0;
 
       }
+
+    #chev{
+        animation: small 2.8s steps(95) infinite;
+        animation-name: small;
+        animation-duration: 2.8s;
+        animation-timing-function: steps(95, end);
+        animation-delay: initial;
+        animation-iteration-count: 10;
+        animation-direction: initial;
+        animation-fill-mode: initial;
+        animation-play-state: initial;
+
+    }
+
+    @-webkit-keyframes small {
+    0%   {background-color:none; left:0px; top:0px;}
+    25%  {color:#006699; background-color:none; left:px; top:-10px;}
+    50%  {background-color:none; left:0px; top:0px;}
+    75%  {background-color:none; left:0px; top:0px;}
+    100% {background-color:none; left:0px; top:0px;}
+}
 </style>
 
     <!-- Custom styles for this template -->
@@ -104,9 +125,11 @@
             <br>
             <br>
             <div class="text-center">
-                <a id="t" href="#About">
-                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
-                </a>
+                <div>
+                    <a id="t" href="#About">
+                        <span id="chev" class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="font-size:2.5em; color: white"></span>
+                    </a>
+                </div>
             </div>
             </div>
         </section>
