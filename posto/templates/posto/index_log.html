@@ -15,12 +15,29 @@
         <div class="row">
             <!-- Jumbotron -->
               <div class="jumbotron">
-                <h1>Bem vindo de volta</h1>
-                <p class="lead">O que deseja fazer agora?</p>
-                  {% if user.is_authenticated %}
-                    <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar dívidas</a>
-                    <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registro de restrição financeira &raquo;</a>
-                  {% endif %}
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="text-left">
+                              <h4>{{ request.user.first_name }} {{ request.user.last_name }},</h4>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xs-12">
+                          <div class="text-left">
+                            <h2>BEM VINDO AO DESABONO<small> nossa rede de informantes</small></h2>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="container-fluid">
+                            <h3>O que deseja fazer agora?</h3>
+                                {% if user.is_authenticated %}
+                                <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar dívidas</a>
+                                <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registro de restrição financeira &raquo;</a>
+                                {% endif %}
+                        </div>
+                  </div>
               </div>
             {% if user_profile %}
                 {{ user_profile.email }}
