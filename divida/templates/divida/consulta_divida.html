@@ -39,6 +39,10 @@ function foiPaga(){
     }
 </style>
 
+        {% block nav %}
+            {% include 'posto/nav-ul-logged.html' %}
+        {% endblock %}
+
     <hr>
         <div class="container" onmouseover="foiPaga()">
             <form action="{% url 'consulta_divida' %}" method="post">
