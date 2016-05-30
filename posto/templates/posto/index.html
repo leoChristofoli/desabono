@@ -70,6 +70,17 @@
       }
 
     #chev{
+      /*Firefox*/
+         -webkit-animation: small 2.8s steps(95) infinite;
+         -webkit-animation-name: small;
+         -webkit-animation-duration: 2.8s;
+         -webkit-animation-timing-function: steps(95, end);
+         -webkit-animation-delay: initial;
+         -webkit-animation-iteration-count: 10;
+         -webkit-animation-direction: initial;
+         -webkit-animation-fill-mode: initial;
+         -webkit-animation-play-state: initial;
+
         animation: small 2.8s steps(95) infinite;
         animation-name: small;
         animation-duration: 2.8s;
@@ -88,7 +99,16 @@
     50%  {background-color:none; left:0px; top:0px;}
     75%  {background-color:none; left:0px; top:0px;}
     100% {background-color:none; left:0px; top:0px;}
-}
+
+      }
+
+      @keyframes small {
+    0%   {background-color:none; left:0px; top:0px;}
+    25%  {color:#006699; background-color:none; left:px; top:-10px;}
+    50%  {background-color:none; left:0px; top:0px;}
+    75%  {background-color:none; left:0px; top:0px;}
+    100% {background-color:none; left:0px; top:0px;}
+    }
 </style>
 
     <!-- Custom styles for this template -->
