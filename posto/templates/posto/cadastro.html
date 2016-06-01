@@ -13,7 +13,12 @@ function fone(){
 function check(){
     if(document.getElementById("optionsRadios2").checked == true){
         document.getElementById("enviar").disabled = false;
-    }else{alert(3)}
+    }
+};
+function uncheck(){
+    if(document.getElementById("optionsRadios1").checked == true){
+        document.getElementById("enviar").disabled = true;
+    }
 };
 
 </script>
@@ -28,7 +33,7 @@ function check(){
         <form action="/cadastro/" method="post">
             {% csrf_token %}
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     {{ form.non_field_errors }}
                         <div class="fieldWrapper">
                             {{ form.empresa.errors }}
@@ -36,7 +41,7 @@ function check(){
                             {{form.empresa}}
                         </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="fieldWrapper">
                         {% if form.cnpj.errors %}
                             {% for erro in form.cnpj.errors %}
@@ -118,6 +123,22 @@ function check(){
                         {{form_user.password_check}}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="radio">
+                            <label>
+                            <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option1">
+                            Aceito os termos &mdash; finalize meu cadastro
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input type="radio" onchange="uncheck()" name="optionsRadios" id="optionsRadios1" value="option2" checked>
+                            Não aceito os termos &mdash; cancele meu cadastro
+                            </label>
+                        </div>
+                    </div>
+                </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="col-md-4">
@@ -127,17 +148,6 @@ function check(){
             </div>
             </div>
             </form>
-        <div class="radio">
-  <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-    Option one is this and that&mdash;be sure to include why it's great
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option2">
-    Option two can be something else and selecting it will deselect option one
-  </label>
-</div>
+
     </div>
 {% endblock %}
