@@ -1,5 +1,22 @@
 {% extends 'posto/base.html' %}
 {% block content %}
+<script>
+function fone(){
+    if (document.frm.campo.value.length == 0){
+    document.frm.campo.value = "(" + document.frm.campo.value; }
+    if (document.frm.campo.value.length == 4){
+    document.frm.campo.value = document.frm.campo.value + ")"; }
+    if (document.frm.campo.value.length == 9){
+    document.frm.campo.value = document.frm.campo.value + "-";}
+}
+
+function check(){
+    if(document.getElementById("optionsRadios2").checked == true){
+        document.getElementById("enviar").disabled = false;
+    }else{alert(3)}
+};
+
+</script>
 <hr>
     <div class="container">
         <div class="row">
@@ -104,21 +121,23 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="col-md-4">
-                        <button type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+                        <button type="submit" id="enviar" value="Submit" class="btn btn-primary btn-lg btn-block" disabled>Enviar</button>
                     </div>
                 </div>
             </div>
             </div>
             </form>
+        <div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+    Option one is this and that&mdash;be sure to include why it's great
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option2">
+    Option two can be something else and selecting it will deselect option one
+  </label>
+</div>
     </div>
 {% endblock %}
-<script>
-function fone(){
-    if (document.frm.campo.value.length == 0){
-    document.frm.campo.value = "(" + document.frm.campo.value; }
-    if (document.frm.campo.value.length == 4){
-    document.frm.campo.value = document.frm.campo.value + ")"; }
-    if (document.frm.campo.value.length == 9){
-    document.frm.campo.value = document.frm.campo.value + "-";}
-}
-</script>
