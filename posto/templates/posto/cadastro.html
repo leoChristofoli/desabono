@@ -13,11 +13,15 @@ function fone(){
 function check(){
     if(document.getElementById("optionsRadios2").checked == true){
         document.getElementById("enviar").disabled = false;
+        document.getElementById("enviar").className = "btn btn-primary btn-lg btn-block";
+        document.getElementById("enviar").innerHTML = "Enviar";
     }
 };
 function uncheck(){
     if(document.getElementById("optionsRadios1").checked == true){
         document.getElementById("enviar").disabled = true;
+        document.getElementById("enviar").className = "btn btn-warning btn-lg btn-block";
+        document.getElementById("enviar").innerHTML = "Cancelar";
     }
 };
 
@@ -25,129 +29,145 @@ function uncheck(){
 <hr>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Cadastro de usuário</h1>
-            </div>
-        </div>
-        <br>
-        <form action="/cadastro/" method="post">
-            {% csrf_token %}
+            <div class="col-xs-12">
             <div class="row">
-                <div class="col-md-6">
-                    {{ form.non_field_errors }}
-                        <div class="fieldWrapper">
-                            {{ form.empresa.errors }}
-                            <label>*{{form.empresa.label_tag}}</label>
-                            {{form.empresa}}
-                        </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {% if form.cnpj.errors %}
-                            {% for erro in form.cnpj.errors %}
-                            <ul>{{erro|escape}}</ul>
-                            <ul>{{erro}}</ul>
-                            {% endfor %}
-                        {% endif %}
-                        {% if c_errors == 'cnpj' %}
-                            <h4>CNPJ Inválido</h4>
-                        {% endif %}
-                        <label>*{{form.cnpj.label_tag}}</label>
-                        {{form.cnpj}}
-                    </div>
+                <div class="col-md-6 col-md-offset-3">
+                    <h1>Cadastro de usuário</h1>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.tipo_empresa.errors }}
-                        <label>*{{form.tipo_empresa.label_tag}}</label>
-                        {{form.tipo_empresa}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.cargo.errors }}
-                        <label>*{{form.cargo.label_tag}}</label>
-                        {{form.cargo}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.nome.errors }}
-                        <label>*{{form.nome.label_tag}}</label>
-                        {{form.nome}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.sobrenome.errors }}
-                        <label>*{{form.sobrenome.label_tag}}</label>
-                        {{form.sobrenome}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.endereco.errors }}
-                        <label>{{form.endereco.label_tag}}</label>
-                        {{form.endereco}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                     <div class="fieldWrapper">
-                        {{ form_user.email.errors }}
-                        <label>*{{form_user.email.label_tag}}</label>
-                        {{form_user.email}}
-                         {% if c_errors == 'email' %}
-                            <h4>Esse email já foi cadastrado - <a href="{% url 'forgot_pass' %}">esqueci minha senha</a></h4>
-                         {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                         <div class="fieldWrapper">
-                            {{ form_user.password.errors }}
-                            <label>*Senha: </label>
-                            {{form_user.password}}
-                        </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form_user.password_check.errors }}
-                        <label>*Digite a senha novamente: </label>
-                        {{form_user.password_check}}
+            <br>
+            <form action="/cadastro/" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.non_field_errors }}
+                            <div class="fieldWrapper">
+                                {{ form.empresa.errors }}
+                                <label>*{{form.empresa.label_tag}}</label>
+                                {{form.empresa}}
+                            </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="radio">
-                            <label>
-                            <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option1">
-                            Aceito os termos &mdash; finalize meu cadastro
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                            <input type="radio" onchange="uncheck()" name="optionsRadios" id="optionsRadios1" value="option2" checked>
-                            Não aceito os termos &mdash; cancele meu cadastro
-                            </label>
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {% if form.cnpj.errors %}
+                                {% for erro in form.cnpj.errors %}
+                                <ul>{{erro|escape}}</ul>
+                                <ul>{{erro}}</ul>
+                                {% endfor %}
+                            {% endif %}
+                            {% if c_errors == 'cnpj' %}
+                                <h4>CNPJ Inválido</h4>
+                            {% endif %}
+                            <label>*{{form.cnpj.label_tag}}</label>
+                            {{form.cnpj}}
                         </div>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="col-md-4">
-                        <button type="submit" id="enviar" value="Submit" class="btn btn-primary btn-lg btn-block" disabled>Enviar</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.tipo_empresa.errors }}
+                            <label>*{{form.tipo_empresa.label_tag}}</label>
+                            {{form.tipo_empresa}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.cargo.errors }}
+                            <label>*{{form.cargo.label_tag}}</label>
+                            {{form.cargo}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.nome.errors }}
+                            <label>*{{form.nome.label_tag}}</label>
+                            {{form.nome}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.sobrenome.errors }}
+                            <label>*{{form.sobrenome.label_tag}}</label>
+                            {{form.sobrenome}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.endereco.errors }}
+                            <label>{{form.endereco.label_tag}}</label>
+                            {{form.endereco}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                         <div class="fieldWrapper">
+                            {{ form_user.email.errors }}
+                            <label>*{{form_user.email.label_tag}}</label>
+                            {{form_user.email}}
+                             {% if c_errors == 'email' %}
+                                <h4>Esse email já foi cadastrado - <a href="{% url 'forgot_pass' %}">esqueci minha senha</a></h4>
+                             {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                             <div class="fieldWrapper">
+                                {{ form_user.password.errors }}
+                                <label>*Senha: </label>
+                                {{form_user.password}}
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form_user.password_check.errors }}
+                            <label>*Digite a senha novamente: </label>
+                            {{form_user.password_check}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="jumbotron">
+                            <div class="radio">
+                                <label>
+                                <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option1">
+                                Aceito os termos &mdash; faça meu cadastro
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" onchange="uncheck()" name="optionsRadios" id="optionsRadios1" value="option2" checked>
+                                Não aceito os termos &mdash; cancele meu cadastro
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <div class="col-md-8">
+                                        <button type="submit" id="enviar" value="Submit" class="btn btn-primary btn-lg btn-block" disabled>Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
-
+            </div>
+        </div>
     </div>
+
 {% endblock %}
