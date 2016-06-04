@@ -1,117 +1,15 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-<hr>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h1>Cadastro de usuário</h1>
-            </div>
-        </div>
-        <br>
-        <form action="/cadastro/" method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form.non_field_errors }}
-                        <div class="fieldWrapper">
-                            {{ form.empresa.errors }}
-                            <label>*{{form.empresa.label_tag}}</label>
-                            {{form.empresa}}
-                        </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="fieldWrapper">
-                        {% if form.cnpj.errors %}
-                            {% for erro in form.cnpj.errors %}
-                            <ul>{{erro|escape}}</ul>
-                            <ul>{{erro}}</ul>
-                            {% endfor %}
-                        {% endif %}
-                        {% if c_errors == 'cnpj' %}
-                            <h4>CNPJ Inválido</h4>
-                        {% endif %}
-                        <label>*{{form.cnpj.label_tag}}</label>
-                        {{form.cnpj}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.tipo_empresa.errors }}
-                        <label>*{{form.tipo_empresa.label_tag}}</label>
-                        {{form.tipo_empresa}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.cargo.errors }}
-                        <label>*{{form.cargo.label_tag}}</label>
-                        {{form.cargo}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.nome.errors }}
-                        <label>*{{form.nome.label_tag}}</label>
-                        {{form.nome}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.sobrenome.errors }}
-                        <label>*{{form.sobrenome.label_tag}}</label>
-                        {{form.sobrenome}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form.endereco.errors }}
-                        <label>{{form.endereco.label_tag}}</label>
-                        {{form.endereco}}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                     <div class="fieldWrapper">
-                        {{ form_user.email.errors }}
-                        <label>*{{form_user.email.label_tag}}</label>
-                        {{form_user.email}}
-                         {% if c_errors == 'email' %}
-                            <h4>Esse email já foi cadastrado - <a href="{% url 'forgot_pass' %}">esqueci minha senha</a></h4>
-                         {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                         <div class="fieldWrapper">
-                            {{ form_user.password.errors }}
-                            <label>*Senha: </label>
-                            {{form_user.password}}
-                        </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="fieldWrapper">
-                        {{ form_user.password_check.errors }}
-                        <label>*Digite a senha novamente: </label>
-                        {{form_user.password_check}}
-                    </div>
-                </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="col-md-4">
-                        <button type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-            </form>
-    </div>
-{% endblock %}
+<style>
+#jb-termos {
+    border-radius: 25px;
+    border: 2px solid #eee;
+}
+#texto-termos{
+    border-radius: 25px;
+    border: 2px solid #eee;
+}
+</style>
 <script>
 function fone(){
     if (document.frm.campo.value.length == 0){
@@ -121,4 +19,147 @@ function fone(){
     if (document.frm.campo.value.length == 9){
     document.frm.campo.value = document.frm.campo.value + "-";}
 }
+
+function check(){
+    if(document.getElementById("optionsRadios2").checked == true){
+        document.getElementById("enviar").disabled = false;
+        document.getElementById("enviar").className = "btn btn-primary btn-lg btn-block";
+        document.getElementById("enviar").innerHTML = "Enviar";
+    }
+};
+function uncheck(){
+    if(document.getElementById("optionsRadios1").checked == true){
+        document.getElementById("enviar").disabled = true;
+        document.getElementById("enviar").className = "btn btn-danger btn-lg btn-block";
+        document.getElementById("enviar").innerHTML = "Cancelar";
+    }
+};
+
 </script>
+<hr>
+    <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h1>Cadastro de usuário</h1>
+                </div>
+            </div>
+            <br>
+        <div class="row">
+            <form action="/cadastro/" method="post">
+                {% csrf_token %}
+            <div class="sing-up">
+                <div class="col-md-6">
+                    <div class="jumbotron">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="container-fluid"><strong>Nome:</strong>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="container-fluid"><strong>Empresa:</strong>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nome da empresa">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa">
+                                            </div>
+                                            <div class="container-fluid">
+                                                <label for="{{form.tipo_empresa_id_for_label}}">Tipo de empresa</label>
+                                                {{form.tipo_empresa}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <br>
+                                            <div class="col-xs-12">
+                                                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="container-fluid"><strong>Senha:</strong>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="password" class="form-control" id="password_check" name="password_check" placeholder="confirme sua senha">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="side-content">
+                    <div class="container-fluid">
+                        <div class="jumbotron" id="jb-termos" style="background-color:white;">
+                            <div class="row">
+                                <div class="container">
+                                    <p class="text-justify">Você está se associando à uma rede de troca de informações.
+                                        Esse clube não é definidor
+                                        de crédito e as informações nele prestadas são de responsabilidade única e intranferivel
+                                        de quem as registrou. A decisão de aceita-las como verdadeiras cabe somente a você, usuário
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" onchange="check()" name="optionsRadios" id="optionsRadios2" value="option1">
+                                Entendi e concordo
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input type="radio" onchange="uncheck()" name="optionsRadios" id="optionsRadios1" value="option2" checked>
+                                Não concordo &mdash; cancele meu cadastro
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col-xs-6">
+                                        <button type="submit" id="enviar" value="Submit" class="btn btn-danger btn-lg btn-block" disabled>Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            </form>
+    </div>
+    </div>
+
+{% endblock %}
