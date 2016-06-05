@@ -56,9 +56,11 @@ function uncheck(){
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                                                {{form.nome.errors}}
                                             </div>
                                             <div class="col-xs-6">
                                                 <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+                                                {{form.sobrenome.errors}}
                                             </div>
                                         </div>
                                     </div>
@@ -70,18 +72,25 @@ function uncheck(){
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nome da empresa">
+                                                {{form.empresa.errors}}
                                             </div>
                                             <div class="col-xs-6">
                                                 <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ">
+                                                {{form.cnpj.errors}}
+                                                {% if c_errors == 'cnpj' %}
+                                                <ul><li>CNPJ inválido</li></ul>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa">
+                                                {{form.cargo.errors}}
                                             </div>
                                             <div class="container-fluid">
                                                 <label for="{{form.tipo_empresa_id_for_label}}">Tipo de empresa</label>
                                                 {{form.tipo_empresa}}
+                                                {{form.tipo_empresa.errors}}
                                             </div>
                                         </div>
                                     </div>
@@ -94,12 +103,14 @@ function uncheck(){
                                             <br>
                                             <div class="col-xs-12">
                                                 <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço">
+                                                {{form.endereco.errors}}
                                             </div>
                                         </div>
                                         <br>
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                                {{form_user.email.errors}}
                                             </div>
                                         </div>
                                     </div>
@@ -111,9 +122,11 @@ function uncheck(){
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+                                            {{form_user.password.errors}}
                                         </div>
                                         <div class="col-xs-6">
                                             <input type="password" class="form-control" id="password_check" name="password_check" placeholder="confirme sua senha">
+                                            {{form_user.password_check.errors}}
                                         </div>
                                     </div>
                             </div>
