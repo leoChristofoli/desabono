@@ -81,7 +81,7 @@ def consulta_divida(request):
 
     return render(
         request,
-        'divida/consultaDivida.html',
+        'divida/consulta_divida.html',
         {
             'dividas': dividas,
             'form': form,
