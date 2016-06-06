@@ -40,7 +40,7 @@ def divida(request):
                 citados = form.cleaned_data['citados']
                 new_divida.citados = multi_split(val_string=citados)
                 new_divida.save()
-                return HttpResponseRedirect('/consulta_divida')
+                return HttpResponseRedirect('/consultaDivida')
             else:
                 c_errors = 'cnpj'
                 form = form_divida()
