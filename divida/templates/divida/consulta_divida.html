@@ -1,37 +1,5 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-<script>
-
-function dividaPaga(id){
-    var y = id.cells[9].innerHTML.toUpperCase().trim();
-    if(y == "PAGA"){
-        if(id.className == "success"){
-            id.className = "";
-        }else{
-            id.className = "success";
-        }
-    }
-    if(y == "EM ABERTO"){
-        if(id.className == "warning"){
-            id.className = "";
-        }else{
-            id.className = "warning";
-        }
-    }
-}
-
-function foiPaga(){
-    var x = document.getElementsByTagName("tr");
-    for(e=0; e < x.length; e++){
-        var y = x[e].cells[9].innerHTML.toUpperCase().trim();
-        if(y == "PAGA"){
-            x[e].cells[9].className = "success";
-        }else if(y == "EM ABERTO"){
-            x[e].cells[9].className = "warning";
-        }
-    }
-}
-</script>
 
 <style>
     tr {
@@ -44,7 +12,7 @@ function foiPaga(){
         {% endblock %}
 
     <hr>
-        <div class="container" onmouseover="foiPaga()">
+        <div class="container" onload="foiPaga()">
             <form action="{% url 'consulta_divida' %}" method="post">
                 {% csrf_token %}
                   <div class="form-group">
@@ -61,7 +29,7 @@ function foiPaga(){
             </form>
         </div>
      <hr>
-        <div class="container" onmouseover="foiPaga()">
+        <div class="container">
             <div class="table-responsive">
             <table class="table table-hover" id="table">
                 <thead>
@@ -164,5 +132,46 @@ function foiPaga(){
               </ul>
             </nav>
         </div>
+<script>
+
+function dividaPaga(id){
+    var y = id.cells[9].innerHTML.toUpperCase().trim();
+    if(y == "PAGA"){
+        if(id.className == "success"){
+            id.className = "";
+        }else{
+            id.className = "success";
+        }
+    }
+    if(y == "EM ABERTO"){
+        if(id.className == "warning"){
+            id.className = "";
+        }else{
+            id.className = "warning";
+        }
+    }
+}
+
+function foiPaga(){
+    var x = document.getElementsByTagName("tr");
+    for(e=0; e < x.length; e++){
+        var y = x[e].cells[9].innerHTML.toUpperCase().trim();
+        if(y == "PAGA"){
+            x[e].cells[9].className = "success";
+        }else if(y == "EM ABERTO"){
+            x[e].cells[9].className = "warning";
+        }
+    }
+}
+
+window.onload = function(){
+    foiPaga();
+    x = document.getElementsByTagName("ul");
+    for(e in x){
+        alert(e["3"])
+    }
+
+}
+</script>
 
 {% endblock %}
