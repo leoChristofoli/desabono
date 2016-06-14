@@ -41,8 +41,8 @@
                       <div class="container-fluid">
                             <h3>O que deseja fazer agora?</h3>
                                 {% if user.is_authenticated %}
-                                <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar dívidas</a>
-                                <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registro de restrição financeira &raquo;</a>
+                                <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar</a>
+                                <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registrar restrição financeira &raquo;</a>
                                 {% endif %}
                         </div>
                   </div>

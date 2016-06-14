@@ -10,6 +10,13 @@
     border: 2px solid #eee;
 }
 </style>
+
+        {% block nav %}
+            {% include 'posto/nav-ul-default.html' %}
+        {% endblock %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 <script>
 function fone(){
     if (document.frm.campo.value.length == 0){
@@ -36,9 +43,14 @@ function uncheck(){
 };
 
 </script>
-        {% block nav %}
-            {% include 'posto/nav-ul-default.html' %}
-        {% endblock %}
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+
+</script>
+
 <hr>
     <div class="container">
             <div class="row">
@@ -112,7 +124,10 @@ function uncheck(){
                                         <br>
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                                    data-toggle="popover" data-trigger="focus" title="Importante" data-placement="right"
+                                                       data-container="body"
+                                                        data-content="Esse email será usado para acessar sua conta e recuperar a senha">
                                                 {{form_user.email.errors}}
                                             </div>
                                         </div>

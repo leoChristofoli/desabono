@@ -1,37 +1,6 @@
 {% extends 'posto/base.html' %}
 {% block content %}
-<script>
-
-function dividaPaga(id){
-    var y = id.cells[9].innerHTML.toUpperCase().trim();
-    if(y == "PAGA"){
-        if(id.className == "success"){
-            id.className = "";
-        }else{
-            id.className = "success";
-        }
-    }
-    if(y == "EM ABERTO"){
-        if(id.className == "warning"){
-            id.className = "";
-        }else{
-            id.className = "warning";
-        }
-    }
-}
-
-function foiPaga(){
-    var x = document.getElementsByTagName("tr");
-    for(e=0; e < x.length; e++){
-        var y = x[e].cells[9].innerHTML.toUpperCase().trim();
-        if(y == "PAGA"){
-            x[e].cells[9].className = "success";
-        }else if(y == "EM ABERTO"){
-            x[e].cells[9].className = "warning";
-        }
-    }
-}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <style>
     tr {
@@ -42,6 +11,12 @@ function foiPaga(){
         {% block nav %}
             {% include 'posto/nav-ul-logged.html' %}
         {% endblock %}
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+
+</script>
 
     <hr>
         <div class="container" onmouseover="foiPaga()">
@@ -49,7 +24,10 @@ function foiPaga(){
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="search">Consulta</label>
-                    <input type="text" class="form-control" id="search" name="search" placeholder="Nome ou CNPJ do devedor">
+                    <input type="text" class="form-control" id="search" name="search" placeholder="Nome ou CNPJ do devedor"
+                      data-toggle="popover" data-trigger="focus" title="Consulta" data-placement="bottom"
+                      data-container="body"
+                      data-content="Você pode procurar pelo nome, CNPJ ou CPF do devedor ou citados">
                       {{ form.search.errors }}
                   </div>
                 <div class="checkbox">
@@ -61,7 +39,10 @@ function foiPaga(){
             </form>
         </div>
      <hr>
-        <div class="container" onmouseover="foiPaga()">
+
+{% if dividas != '' %}
+
+        <div class="container">
             <div class="table-responsive">
             <table class="table table-hover" id="table">
                 <thead>
@@ -70,10 +51,9 @@ function foiPaga(){
                         <th>Nome devedor</th>
                         <th>Credor</th>
                         <th>CNPJ do devedor</th>
-                        <th>Data</th>
+                        <th>Vencimento</th>
                         <th>Valor</th>
                         <th>Tipo</th>
-                        <th>Nome do credor</th>
                         <th id="teste">Descrição</th>
                         <th>Situação</th>
                     </tr>
@@ -97,7 +77,7 @@ function foiPaga(){
                         </td>
                         <td>
                             <div style="height: cover; overflow:auto; width: 100px">
-                                {{ divida.data_add|date:"d M Y" }}
+                                {{ divida.vencimento|date:"d M Y" }}
                             </div>
                         </td>
                         <td>
@@ -105,9 +85,6 @@ function foiPaga(){
                         </td>
                         <td>
                             {{ divida.tipo_divida }}
-                        </td>
-                        <td>
-                            {{ divida.nome_devedor }}
                         </td>
                         <td>
                             <div style="height: 50px; overflow:auto;">
@@ -164,5 +141,39 @@ function foiPaga(){
               </ul>
             </nav>
         </div>
+{% endif %}
+<script>
+
+function dividaPaga(id){
+    var y = id.cells[8].innerHTML.toUpperCase().trim();
+    if(y == "PAGA"){
+        if(id.className == "success"){
+            id.className = "";
+        }else{
+            id.className = "success";
+        }
+    }
+    if(y == "EM ABERTO"){
+        if(id.className == "warning"){
+            id.className = "";
+        }else{
+            id.className = "warning";
+        }
+    }
+}
+
+function foiPaga(){
+    var x = document.getElementsByTagName("tr");
+    for(e=0; e < x.length; e++){
+        var y = x[e].cells[8].innerHTML.toUpperCase().trim();
+        if(y == "PAGA"){
+            x[e].cells[8].className = "success";
+        }else if(y == "EM ABERTO"){
+            x[e].cells[8].className = "warning";
+        }
+    }
+}
+
+</script>
 
 {% endblock %}
