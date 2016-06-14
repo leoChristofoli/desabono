@@ -9,7 +9,7 @@
             {% endblock %}
 
 <hr>
-    <div class="container">
+    <div class="container" onmouseover="foiPaga()">
         <div class="row">
             <!-- Jumbotron -->
               <div class="col-md-4">
@@ -31,20 +31,18 @@
             </div>
         </div>
         {% if dividas != '' %}
+        <hr>
         <div class="row">
-        <div class="col-md-4">
-            <div class="table-responsive">
+        <div class="col-md-8">
+            <h2>Minhas Dívidas</h2>
+            <div class="table-responsive" id="mydivs">
             <table class="table table-hover" id="table">
                 <thead>
                     <tr>
                         <th> </th>
                         <th>Nome devedor</th>
-                        <th>Credor</th>
                         <th>CNPJ do devedor</th>
-                        <th>Vencimento</th>
                         <th>Valor</th>
-                        <th>Tipo</th>
-                        <th id="teste">Descrição</th>
                         <th>Situação</th>
                     </tr>
                 </thead>
@@ -60,26 +58,10 @@
                             </div>
                         </td>
                         <td>
-                            {{ divida.credor_cnpj.first_name }} {{ divida.credor_cnpj.last_name }}
-                        </td>
-                        <td>
                             {{ divida.ident_devedor }}
                         </td>
                         <td>
-                            <div style="height: cover; overflow:auto; width: 100px">
-                                {{ divida.vencimento|date:"d M Y" }}
-                            </div>
-                        </td>
-                        <td>
                             R${{ divida.valor }}
-                        </td>
-                        <td>
-                            {{ divida.tipo_divida }}
-                        </td>
-                        <td>
-                            <div style="height: 50px; overflow:auto;">
-                                {{ divida.descricao|truncatewords:10 }}
-                            </div>
                         </td>
                         <td id="sit">
                             {% if divida.is_open %}
@@ -160,6 +142,39 @@
         chart.draw(data, options);
       }
     </script>
+<script>
+
+function dividaPaga(id){
+    var y = id.cells[4].innerHTML.toUpperCase().trim();
+    if(y == "PAGA"){
+        if(id.className == "success"){
+            id.className = "";
+        }else{
+            id.className = "success";
+        }
+    }
+    if(y == "EM ABERTO"){
+        if(id.className == "warning"){
+            id.className = "";
+        }else{
+            id.className = "warning";
+        }
+    }
+}
+
+function foiPaga(){
+    var x = document.getElementsByTagName("tr");
+    for(e=0; e < x.length; e++){
+        var y = x[e].cells[4].innerHTML.toUpperCase().trim();
+        if(y == "PAGA"){
+            x[e].cells[4].className = "success";
+        }else if(y == "EM ABERTO"){
+            x[e].cells[4].className = "warning";
+        }
+    }
+}
+
+</script>
 
 
 

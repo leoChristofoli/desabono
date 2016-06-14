@@ -42,7 +42,7 @@ def cadastro(request):
         form = form_credor(request.POST)
         form_user = form_credor_user(request.POST)
         if form.is_valid() and form_user.is_valid():
-            cnpj_c = form.cleaned_data['cnpj']
+            cnpj_c = form.cleaned_data['cnpj'].replace('/', '').replace('-', '').replace('.', '')
             if Cnpj().validate(cnpj_c):
                 email = form_user.cleaned_data['email']
                 pwd = form_user.cleaned_data['password']
@@ -67,6 +67,7 @@ def cadastro(request):
                             'form_user': form_user,
                             'c_errors': c_errors
                         })
+                new_user.cnpj = cnpj_c
                 new_user.data_add = datetime.now()
                 new_user.ip_user = get_ip(request)
                 new_user.save()

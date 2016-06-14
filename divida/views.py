@@ -67,7 +67,8 @@ def consulta_divida(request):
             search = form.cleaned_data['search']
             dividas = m_divida.objects.filter(
                 Q(nome_devedor__icontains=search) |
-                Q(ident_devedor__icontains=search)
+                Q(ident_devedor__icontains=search) |
+                Q(citados__icontains=search)
             )
             if form.cleaned_data['inativos'] == 'True':
                 dividas = dividas.filter(is_open=True)
