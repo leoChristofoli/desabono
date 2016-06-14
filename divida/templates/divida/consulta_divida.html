@@ -12,7 +12,7 @@
         {% endblock %}
 
     <hr>
-        <div class="container" onload="foiPaga()">
+        <div class="container" onmouseover="foiPaga()">
             <form action="{% url 'consulta_divida' %}" method="post">
                 {% csrf_token %}
                   <div class="form-group">
@@ -29,6 +29,9 @@
             </form>
         </div>
      <hr>
+
+{% if dividas != '' %}
+
         <div class="container">
             <div class="table-responsive">
             <table class="table table-hover" id="table">
@@ -38,10 +41,9 @@
                         <th>Nome devedor</th>
                         <th>Credor</th>
                         <th>CNPJ do devedor</th>
-                        <th>Data</th>
+                        <th>Vencimento</th>
                         <th>Valor</th>
                         <th>Tipo</th>
-                        <th>Nome do credor</th>
                         <th id="teste">Descrição</th>
                         <th>Situação</th>
                     </tr>
@@ -65,7 +67,7 @@
                         </td>
                         <td>
                             <div style="height: cover; overflow:auto; width: 100px">
-                                {{ divida.data_add|date:"d M Y" }}
+                                {{ divida.vencimento|date:"d M Y" }}
                             </div>
                         </td>
                         <td>
@@ -73,9 +75,6 @@
                         </td>
                         <td>
                             {{ divida.tipo_divida }}
-                        </td>
-                        <td>
-                            {{ divida.nome_devedor }}
                         </td>
                         <td>
                             <div style="height: 50px; overflow:auto;">
@@ -132,10 +131,11 @@
               </ul>
             </nav>
         </div>
+{% endif %}
 <script>
 
 function dividaPaga(id){
-    var y = id.cells[9].innerHTML.toUpperCase().trim();
+    var y = id.cells[8].innerHTML.toUpperCase().trim();
     if(y == "PAGA"){
         if(id.className == "success"){
             id.className = "";
@@ -155,11 +155,11 @@ function dividaPaga(id){
 function foiPaga(){
     var x = document.getElementsByTagName("tr");
     for(e=0; e < x.length; e++){
-        var y = x[e].cells[9].innerHTML.toUpperCase().trim();
+        var y = x[e].cells[8].innerHTML.toUpperCase().trim();
         if(y == "PAGA"){
-            x[e].cells[9].className = "success";
+            x[e].cells[8].className = "success";
         }else if(y == "EM ABERTO"){
-            x[e].cells[9].className = "warning";
+            x[e].cells[8].className = "warning";
         }
     }
 }

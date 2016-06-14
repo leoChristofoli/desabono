@@ -30,39 +30,67 @@ function aceito(){
             <form class="form-horizontal" action="/divida/" method="post" onsubmit="return validateForm()">
                 <fieldset disabled id="disable1">
                     {% csrf_token %}
-
                     <div class="container-fluid">
-                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="input-group">
                                       <div class="input-group-addon">R$</div>
                                         <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor da dívida">
-                                      <div class="input-group-addon">.00</div>
                                         {{ form.valor.errors }}
                                     </div>
                                 </div>
-
-                            <label for="deve">Devedor</label>
+                        </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                <div class="form-group " id="divi">
+                                        <input type="text" class="form-control" id="vencimento" name="vencimento" placeholder="Vencimento da dívida">
+                                        {{ form.vencimento.errors }}
+                                </div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="{{ form.tipo_divida.id_for_label }}" class="col-sm-2 control-label">Origem</label>
+                                        {{form.tipo_divida}}
+                                        {{ form.tipo_divida.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="deve">Devedor</label>
                                 <div class="form-group" id="deve">
                                         <input type="text" class="form-control" id="nome_devedor" name="nome_devedor" placeholder="Nome do devedor">
                                         {{ form.nome_devedor.errors }}
                                         <input type="text" class="form-control" id="ident_devedor" name="ident_devedor" placeholder="CNPJ devedor">
                                         {{ form.ident_devedor.errors }}
                                 </div>
-
-                                <label for="divi">Dívida</label>
-                                <div class="form-group " id="divi">
-                                        <input type="text" class="form-control" id="vencimento" name="vencimento" placeholder="Vencimento da dívida">
-                                        {{ form.vencimento.errors }}
-                                    <br>
-                                        <label for="{{ form.tipo_divida.id_for_label }}" class="col-sm-2 control-label">Tipo</label>
-                                        {{form.tipo_divida}}
-                                        {{ form.tipo_divida.errors }}
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="cit">Citados</label>
+                                    <div class="form-group" id="cit">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="citado" id="citado" placeholder="Nome">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="citado2" id="citado2" placeholder="Nome">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="cpf2" id="cpf2" placeholder="CPF">
+                                        </div>
+                                    </div>
                                 </div>
-                            <div class="form-group" id="">
-                                <label for="{{ form.citados.id_for_label }}" class="col-sm-2 control-label">Citados</label>
-                                    <textarea class="form-control" rows="3" id="citados" name="citados" placeholder="Joe Due tel:555-5555; Jane Due tel:999-9999"></textarea>
-                                    {{ form.citados.errors }}
                             </div>
                         </div>
                         </div>

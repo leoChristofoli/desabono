@@ -22,7 +22,7 @@
                   <h3>CNPJ: <small>{{ user_profile.cnpj }}</small></h3>
                 {% endif %}
             </div>
-            </div>
+        </div>
         <div class="row">
             <div class="col-md-4">
             {% if user_profile %}
@@ -30,11 +30,112 @@
             {% endif %}
             </div>
         </div>
-
-
-        <hr>
+        {% if dividas != '' %}
         <div class="row">
-            <div id="piechart" style="width: 450px; height: 250px;"></div>
+        <div class="col-md-4">
+            <div class="table-responsive">
+            <table class="table table-hover" id="table">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Nome devedor</th>
+                        <th>Credor</th>
+                        <th>CNPJ do devedor</th>
+                        <th>Vencimento</th>
+                        <th>Valor</th>
+                        <th>Tipo</th>
+                        <th id="teste">Descrição</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="linhas">
+                {% for divida in div_page %}
+                    <tr onmouseover="dividaPaga(this)" onmouseout="dividaPaga(this)">
+                        <td>
+                            <a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a>
+                        </td>
+                        <td>
+                            <div style="height: cover; overflow:auto; width: 100px">
+                                {{ divida.nome_devedor }}
+                            </div>
+                        </td>
+                        <td>
+                            {{ divida.credor_cnpj.first_name }} {{ divida.credor_cnpj.last_name }}
+                        </td>
+                        <td>
+                            {{ divida.ident_devedor }}
+                        </td>
+                        <td>
+                            <div style="height: cover; overflow:auto; width: 100px">
+                                {{ divida.vencimento|date:"d M Y" }}
+                            </div>
+                        </td>
+                        <td>
+                            R${{ divida.valor }}
+                        </td>
+                        <td>
+                            {{ divida.tipo_divida }}
+                        </td>
+                        <td>
+                            <div style="height: 50px; overflow:auto;">
+                                {{ divida.descricao|truncatewords:10 }}
+                            </div>
+                        </td>
+                        <td id="sit">
+                            {% if divida.is_open %}
+                                Em aberto
+                            {% else %}
+                                Paga
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            </div>
+            {% endif %}
+                <div class="col-md-4">
+                    <div id="piechart" style="width: 450px; height: 250px;"></div>
+                </div>
+            </div>
+        <div class="row">
+                        <nav>
+              <ul class="pagination">
+                {% if div_page.has_previous %}
+                    <li>
+                        <a href="?page={{ div_page.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a></li>
+                {% endif %}
+
+                {% for page in paginator.page_range %}
+                    <li><a href="?page={{page}}">{{ page }}</a></li>
+                {% endfor %}
+                  {% if paginator.num_pages > 5 %}
+                      <li><a href="#">...</a></li>
+                        <li><a href="?page={{ div_page.end_index }}">last</a></li>
+                  {% endif %}
+
+                  {% if div_page.has_next %}
+                        <li>
+                            <a href="?page={{ div_page.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a></li>
+                    {% endif %}
+              </ul>
+            </nav>
+
         </div>
     </div>
 
