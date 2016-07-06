@@ -7,6 +7,7 @@ from divida.models import divida as divida_model
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .cnpj import Cnpj
+from .cpf import CPF
 from django.db import IntegrityError
 
 
@@ -41,9 +42,11 @@ def cadastro(request):
     if request.method == 'POST':
         form = form_credor(request.POST)
         form_user = form_credor_user(request.POST)
+        print(form.is_valid())
         if form.is_valid() and form_user.is_valid():
             cnpj_c = form.cleaned_data['cnpj'].replace('/', '').replace('-', '').replace('.', '')
-            if Cnpj().validate(cnpj_c):
+            cpf = CPF(cnpj_c)
+            if Cnpj().validate(cnpj_c) or cpf.isValid():
                 email = form_user.cleaned_data['email']
                 pwd = form_user.cleaned_data['password']
                 pwd_check = form_user.cleaned_data['password_check']

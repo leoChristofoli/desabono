@@ -4,7 +4,7 @@
 {% load staticfiles %}
   <style>
     .jumbotron{
-        background-image:url({% static 'img/calc_coins.jpg' %});
+        /*background-image:url({% static 'img/calc_coins.jpg' %});*/
         background-repeat:no-repeat;
         background-position:center;
         background-size: cover;
@@ -111,7 +111,11 @@
 
    .navbar {
     /*background-color: transparent;*/
-}
+    }
+
+      .fa{
+        color:
+      }
 </style>
 
     <!-- Custom styles for this template -->
@@ -129,6 +133,7 @@
               <div class="container push-spaces text-center">
                   <div class="row">
                     <div class="col-md-6 col-md-offset-3">
+                        <img src="{% static 'img/logo.png' %}" alt="Desabono">
                         <h1 >Bem vindo!</h1>
                     </div>
                       <div class="row">
@@ -156,7 +161,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <p class="text-justify" style="font-size: 20px">
-                        O Desabono é uma rede de informações destinadas a empresas de factorings, FIDCs, securitizadoras,
+                        O Desabono é uma rede de informações destinadas à empresas de factorings, FIDCs, securitizadoras,
                         enfim todas as empresas que operam no mercado financeiro e têm a necessidadde de registrar rapidamente
                         algum desabono ou irregularidade de seus clientes a fim de fazer um alerta aos outros integrantes dessa
                         rede para se precaverem.
@@ -186,7 +191,7 @@
                             <li>Falta de performance em operações de fomento</li>
                         </ul>
                     </div>
-                    <p class="text-center">E ainda qualquer outros fatos que voce ache importante relatar, pois as informções são feitas de modo textual.</p>
+                    <p class="text-center">E ainda qualquer outros fatos que voce ache importante relatar, pois as informações são feitas de modo textual.</p>
 
                     <!--<img src="{% static 'img/tbl.png' %}" class="img-responsive" alt="...">-->
                     <!--
@@ -208,7 +213,7 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <i class="fa fa-eye fa-5x"></i>
+                    <i class="fa fa-search fa-5x"></i>
                     <h3>Atualmente temos
                     {{ dividas_count }}
                     registros de desabonos</h3>
@@ -218,85 +223,85 @@
         </div>
     </section>
 
-    <section class="module parallax parallax-1" id="Consulta">
-        <div class="container">
-            <h1>Consulta</h1>
-        </div>
-    </section>
+    <!--<section class="module parallax parallax-1" id="Consulta">-->
+        <!--<div class="container">-->
+            <!--<h1>Consulta</h1>-->
+        <!--</div>-->
+    <!--</section>-->
 
-    <section class="module content content-2" id="con2">
-        <div class="container-fluid" style="background-color: white;" >
-          <!-- Example row of columns -->
-          <div class="row">
-              <div class="text-center">
-                  <div class="col-md-4">
-                      <span class="glyphicon glyphicon-euro" aria-hidden="true" style="font-size:2.5em; color: black"></span>
-                      <h3>Nullam</h3>
-                          <small>quis risus eget urna mollis ornare vel eu leo.
-                              Cum sociis natoque penatibus et magnis dis parturient montes,
-                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-                              Cum sociis natoque </small>
-                  </div>
-                  <div class="col-md-4">
-                      <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:2.5em; color: black"></span>
-                      <h3>Nullam</h3>
-                          <small>quis risus eget urna mollis ornare vel eu leo.
-                              Cum sociis natoque penatibus et magnis dis parturient montes,
-                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-                              Cum sociis natoque </small>
-                  </div>
-                  <div class="col-md-4">
-                      <span class="glyphicon glyphicon-phone" aria-hidden="true" style="font-size:2.5em; color: black"></span>
-                      <h3>Nullam</h3>
-                          <small>quis risus eget urna mollis ornare vel eu leo.
-                              Cum sociis natoque penatibus et magnis dis parturient montes,
-                              nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-                              Cum sociis natoque </small>
-                  </div>
-              </div>
-          </div>
-        </div> <!-- /container -->
-    </section>
+    <!--<section class="module content content-2" id="con2">-->
+        <!--<div class="container-fluid" style="background-color: white;" >-->
+          <!--&lt;!&ndash; Example row of columns &ndash;&gt;-->
+          <!--<div class="row">-->
+              <!--<div class="text-center">-->
+                  <!--<div class="col-md-4">-->
+                      <!--<span class="glyphicon glyphicon-euro" aria-hidden="true" style="font-size:2.5em; color: black"></span>-->
+                      <!--<h3>Nullam</h3>-->
+                          <!--<small>quis risus eget urna mollis ornare vel eu leo.-->
+                              <!--Cum sociis natoque penatibus et magnis dis parturient montes,-->
+                              <!--nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.-->
+                              <!--Cum sociis natoque </small>-->
+                  <!--</div>-->
+                  <!--<div class="col-md-4">-->
+                      <!--<span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:2.5em; color: black"></span>-->
+                      <!--<h3>Nullam</h3>-->
+                          <!--<small>quis risus eget urna mollis ornare vel eu leo.-->
+                              <!--Cum sociis natoque penatibus et magnis dis parturient montes,-->
+                              <!--nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.-->
+                              <!--Cum sociis natoque </small>-->
+                  <!--</div>-->
+                  <!--<div class="col-md-4">-->
+                      <!--<span class="glyphicon glyphicon-phone" aria-hidden="true" style="font-size:2.5em; color: black"></span>-->
+                      <!--<h3>Nullam</h3>-->
+                          <!--<small>quis risus eget urna mollis ornare vel eu leo.-->
+                              <!--Cum sociis natoque penatibus et magnis dis parturient montes,-->
+                              <!--nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.-->
+                              <!--Cum sociis natoque </small>-->
+                  <!--</div>-->
+              <!--</div>-->
+          <!--</div>-->
+        <!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+    <!--</section>-->
 
 
 
-    <section class="module parallax parallax-2" id="Registro">
-        <div class="container">
-            <h1>Registro</h1>
-        </div>
-    </section>
+    <!--<section class="module parallax parallax-2" id="Registro">-->
+        <!--<div class="container">-->
+            <!--<h1>Registro</h1>-->
+        <!--</div>-->
+    <!--</section>-->
 
-    <section class="module content content-3" id="con3">
-        <div class="container-fluid" style="background-color: white;" >
-          <!-- Example row of columns -->
-          <div class="row">
-              <div class="col-md-6">
-                  <div class="text-center">
-                    <h3>Registro</h3>
-                      <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.
-                          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                          Nullam id dolor id nibh ultricies vehicula.
-                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-                            Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
-                          porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-                          eget lacinia odio sem nec elit.</p>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="text-center">
-                    <h3>Registro</h3>
-                      <p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.
-                          Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                          Nullam id dolor id nibh ultricies vehicula.
-                            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
-                            Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi
-                          porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-                          eget lacinia odio sem nec elit.</p>
-                  </div>
-              </div>
-          </div>
-          <hr>
-        </div> <!-- /container -->
-    </section>
+    <!--<section class="module content content-3" id="con3">-->
+        <!--<div class="container-fluid" style="background-color: white;" >-->
+          <!--&lt;!&ndash; Example row of columns &ndash;&gt;-->
+          <!--<div class="row">-->
+              <!--<div class="col-md-6">-->
+                  <!--<div class="text-center">-->
+                    <!--<h3>Registro</h3>-->
+                      <!--<p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.-->
+                          <!--Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.-->
+                          <!--Nullam id dolor id nibh ultricies vehicula.-->
+                            <!--Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.-->
+                            <!--Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi-->
+                          <!--porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,-->
+                          <!--eget lacinia odio sem nec elit.</p>-->
+                  <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-6">-->
+                  <!--<div class="text-center">-->
+                    <!--<h3>Registro</h3>-->
+                      <!--<p class="text-justify">Nullam quis risus eget urna mollis ornare vel eu leo.-->
+                          <!--Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.-->
+                          <!--Nullam id dolor id nibh ultricies vehicula.-->
+                            <!--Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.-->
+                            <!--Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi-->
+                          <!--porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula,-->
+                          <!--eget lacinia odio sem nec elit.</p>-->
+                  <!--</div>-->
+              <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+        <!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+    <!--</section>-->
 
 {% endblock %}

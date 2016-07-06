@@ -88,16 +88,16 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'desabono',
-#         'USER': 'postgres',
-#         'PASSWORD': '@#Seg01',
-#         'HOST': '169.6.233.45',
-#         'PORT': '5423',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'desabono',
+        'USER': 'postgres',
+        'PASSWORD': '@#Seg01',
+        'HOST': '169.6.233.45',
+        'PORT': '5423',
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = (
     {

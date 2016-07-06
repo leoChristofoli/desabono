@@ -13,6 +13,12 @@ class form_divida(ModelForm):
                   'vencimento',
                   'tipo_divida']
 
+    def clean_valor(self):
+        valor = self.cleaned_data['valor']
+        valor = valor.replace(',', '')
+        return valor
+
+
 BOOL_CHOICES = (
     ('True', 'Sim'),
     ('False', 'Não')
