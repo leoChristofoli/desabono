@@ -1,5 +1,6 @@
 {% extends 'posto/base.html' %}
 {% block content %}
+{% load humanize %}
 
         {% block nav %}
             {% include 'posto/nav-ul-logged.html' %}
@@ -29,7 +30,7 @@
 
             <div class="col-md-4">
                 <div>
-                    <h3>Adicionado em: <small>{{ divida_var.data_add|date:"D, d M Y" }}</small></h3>
+                    <h3>Adicionado em: <small>{{ divida_var.data_add|naturalday }}</small></h3>
                 </div>
             </div>
 
@@ -38,7 +39,7 @@
 
             <div class="col-md-4">
             <div>
-                <h3 id="">Valor: <small>R${{ divida_var.valor }}</small></h3>
+                <h3 id="">Valor: <small>R${{ divida_var.valor|intcomma }}</small></h3>
             </div>
             </div>
 

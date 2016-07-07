@@ -21,8 +21,21 @@ function aceito(){
     <script src="{% static 'js/src/jquery.maskMoney.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/MaskPlugin/src/jquery.mask.js' %}" type="text/javascript"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+     $(".nav").find(".active").removeClass("active");
+     $(".nav").find("#registrar").addClass("active");
+});
+</script>
+
+<style>
+    .teste{
+        color: red;
+    }
+</style>
+
 <hr>
-    <div class="container">
+    <div class="container" id="mouse">
         <div class="row">
             {% if c_errors == 'cnpj' %}
                 <h3>CNPJ inválido</h3>

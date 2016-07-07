@@ -18,13 +18,21 @@
 
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+     $(".nav").find(".active").removeClass("active");
+     $(".nav").find("#consultar").addClass("active");
+});
+</script>
+
+
     <hr>
         <div class="container" onmouseover="foiPaga()">
             <form action="{% url 'consulta_divida' %}" method="post">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="search">Consulta</label>
-                    <input type="text" class="form-control" id="search" name="search" placeholder="Nome ou CNPJ do devedor"
+                    <input type="text" class="form-control" id="search" name="search" placeholder="Nome, CNPJ ou CPF"
                       data-toggle="popover" data-trigger="focus" title="Consulta" data-placement="bottom"
                       data-container="body"
                       data-content="Você pode procurar pelo nome, CNPJ ou CPF do devedor ou citados">

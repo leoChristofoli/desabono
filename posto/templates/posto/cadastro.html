@@ -1,5 +1,7 @@
 {% extends 'posto/base.html' %}
 {% block content %}
+{% load staticfiles %}
+
 <style>
 #jb-termos {
     border-radius: 25px;
@@ -16,17 +18,10 @@
         {% endblock %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="{% static 'js/src/jquery.maskMoney.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/MaskPlugin/src/jquery.mask.js' %}" type="text/javascript"></script>
 
 <script>
-function fone(){
-    if (document.frm.campo.value.length == 0){
-    document.frm.campo.value = "(" + document.frm.campo.value; }
-    if (document.frm.campo.value.length == 4){
-    document.frm.campo.value = document.frm.campo.value + ")"; }
-    if (document.frm.campo.value.length == 9){
-    document.frm.campo.value = document.frm.campo.value + "-";}
-}
-
 function check(){
     if(document.getElementById("optionsRadios2").checked == true){
         document.getElementById("enviar").disabled = false;
@@ -90,7 +85,8 @@ $(document).ready(function(){
                                                 {{form.empresa.errors}}
                                             </div>
                                             <div class="col-xs-6">
-                                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ">
+                                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ" maxlength="18">
+                                                <script type="text/javascript">$("#cnpj").mask('00.000.000/0000-00', {reverse: true});;</script>
                                                 {{form.cnpj.errors}}
                                                 {% if c_errors == 'cnpj' %}
                                                 <ul><li>CNPJ inválido</li></ul>

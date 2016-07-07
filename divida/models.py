@@ -70,6 +70,14 @@ class divida(models.Model):
         default=True,
         verbose_name='Termos de uso'
     )
+    ident_devedor_cleaned = models.CharField(
+        max_length=100,
+        null=True,
+    )
+
+    def save(self, *args, **kwargs):
+        self.ident_devedor_cleaned = self.ident_devedor.replace('/', '').replace('.', '').replace('-', '')
+        super(divida, self).save(*args, **kwargs)
 
     def __str__(self):
         return "{id}, {nome}".format(id=self.id, nome=self.nome_devedor)
