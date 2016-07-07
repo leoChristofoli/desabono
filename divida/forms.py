@@ -11,11 +11,8 @@ class form_divida(ModelForm):
                   'nome_devedor',
                   'ident_devedor',
                   'vencimento',
-                  'citados',
                   'tipo_divida']
-        widgets = {
-            'citados': forms.Textarea(attrs={'cols': 45, 'rows': 2})
-        }
+
 
 BOOL_CHOICES = (
     ('True', 'Sim'),

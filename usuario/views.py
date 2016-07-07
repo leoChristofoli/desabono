@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 import string
 import random
 from django.core.mail import send_mail
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def login_view(request):
@@ -19,7 +20,7 @@ def login_view(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             pwd = form.cleaned_data['password']
-            user = authenticate(username=email, password=pwd)
+            user = authenticate(username=email.strip(), password=pwd)
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -60,11 +61,24 @@ def user_view(request, user_id):
     if int(request.user.id) == int(user_id):
         user = User.objects.get(id=user_id)
         user_profile = credor.objects.get(email=user)
+        dividas = divida_model.objects.filter(credor_cnpj=user).order_by('data_add')
         dividas_count = divida_model.objects.filter(credor_cnpj=user).count()
         dividas_enc_count = divida_model.objects.filter(credor_cnpj=user).filter(is_open=False).count()
         dividas_abertas_count = divida_model.objects.filter(credor_cnpj=user).filter(is_open=True).count()
+
+        paginator = Paginator(dividas, 20)
+
+        page = request.GET.get('page')
+        try:
+            div_page = paginator.page(page)
+        except PageNotAnInteger:
+            div_page = paginator.page(1)
+        except EmptyPage:
+            div_page = paginator.page(paginator.num_pages)
+
         context = {
             'user_profile': user_profile,
+            'div_page': div_page,
             'dividas_enc_count': dividas_enc_count,
             'dividas_abertas_count': dividas_abertas_count,
             'dividas_count': dividas_count

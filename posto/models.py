@@ -70,6 +70,11 @@ class credor(models.Model):
         null=True,
         verbose_name='Cargo na empresa'
     )
+    site = models.CharField(
+        max_length=1000,
+        null=True,
+        verbose_name='Site da empresa'
+    )
 
     def __str__(self):
         return "{nome} {sobrenome} @{empresa}".format(

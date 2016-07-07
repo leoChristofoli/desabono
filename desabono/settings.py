@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,10 +82,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'de9iqbsjaep9ja',
-        'USER': 'sdcfxjlfpcfdrk',
-        'PASSWORD': 'hx0yMuBsIVVbUhf6Mdg83oXt32',
-        'HOST': 'ec2-107-22-250-17.compute-1.amazonaws.com',
-        'PORT': '5432',
     }
 }
 

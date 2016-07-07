@@ -9,7 +9,7 @@
             {% endblock %}
 
 <hr>
-    <div class="container">
+    <div class="container" onmouseover="foiPaga()">
         <div class="row">
             <!-- Jumbotron -->
               <div class="col-md-4">
@@ -22,7 +22,7 @@
                   <h3>CNPJ: <small>{{ user_profile.cnpj }}</small></h3>
                 {% endif %}
             </div>
-            </div>
+        </div>
         <div class="row">
             <div class="col-md-4">
             {% if user_profile %}
@@ -30,11 +30,94 @@
             {% endif %}
             </div>
         </div>
-
-
+        {% if dividas != '' %}
         <hr>
         <div class="row">
-            <div id="piechart" style="width: 450px; height: 250px;"></div>
+        <div class="col-md-8">
+            <h2>Minhas Dívidas</h2>
+            <div class="table-responsive" id="mydivs">
+            <table class="table table-hover" id="table">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Nome devedor</th>
+                        <th>CNPJ do devedor</th>
+                        <th>Valor</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="linhas">
+                {% for divida in div_page %}
+                    <tr onmouseover="dividaPaga(this)" onmouseout="dividaPaga(this)">
+                        <td>
+                            <a href="{% url 'divida_detail' divida.id %}">Mais detalhes</a>
+                        </td>
+                        <td>
+                            <div style="height: cover; overflow:auto; width: 100px">
+                                {{ divida.nome_devedor }}
+                            </div>
+                        </td>
+                        <td>
+                            {{ divida.ident_devedor }}
+                        </td>
+                        <td>
+                            R${{ divida.valor }}
+                        </td>
+                        <td id="sit">
+                            {% if divida.is_open %}
+                                Em aberto
+                            {% else %}
+                                Paga
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            </div>
+            {% endif %}
+                <div class="col-md-4">
+                    <div id="piechart" style="width: 450px; height: 250px;"></div>
+                </div>
+            </div>
+        <div class="row">
+                        <nav>
+              <ul class="pagination">
+                {% if div_page.has_previous %}
+                    <li>
+                        <a href="?page={{ div_page.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a></li>
+                {% endif %}
+
+                {% for page in paginator.page_range %}
+                    <li><a href="?page={{page}}">{{ page }}</a></li>
+                {% endfor %}
+                  {% if paginator.num_pages > 5 %}
+                      <li><a href="#">...</a></li>
+                        <li><a href="?page={{ div_page.end_index }}">last</a></li>
+                  {% endif %}
+
+                  {% if div_page.has_next %}
+                        <li>
+                            <a href="?page={{ div_page.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="disabled"><a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a></li>
+                    {% endif %}
+              </ul>
+            </nav>
+
         </div>
     </div>
 
@@ -59,6 +142,39 @@
         chart.draw(data, options);
       }
     </script>
+<script>
+
+function dividaPaga(id){
+    var y = id.cells[4].innerHTML.toUpperCase().trim();
+    if(y == "PAGA"){
+        if(id.className == "success"){
+            id.className = "";
+        }else{
+            id.className = "success";
+        }
+    }
+    if(y == "EM ABERTO"){
+        if(id.className == "warning"){
+            id.className = "";
+        }else{
+            id.className = "warning";
+        }
+    }
+}
+
+function foiPaga(){
+    var x = document.getElementsByTagName("tr");
+    for(e=0; e < x.length; e++){
+        var y = x[e].cells[4].innerHTML.toUpperCase().trim();
+        if(y == "PAGA"){
+            x[e].cells[4].className = "success";
+        }else if(y == "EM ABERTO"){
+            x[e].cells[4].className = "warning";
+        }
+    }
+}
+
+</script>
 
 
 

@@ -27,7 +27,9 @@ def multi_split(val_string):
 def divida(request):
     c_errors = ''
     if request.method == 'POST':
-        form = form_divida(request.POST)
+        data = request.POST.copy()
+        data['valor'] = float(request.POST['valor'].replace(',', ''))
+        form = form_divida(data)
         form_desc = form_divida_descricao(request.POST)
         if form.is_valid() and form_desc.is_valid():
             cnpj_c = form.cleaned_data['ident_devedor']
@@ -37,7 +39,12 @@ def divida(request):
                 new_divida.credor_cnpj = User.objects.get(id=request.user.id)
                 new_divida.data_add = datetime.now()
                 new_divida.descricao = new_divida_desc
-                citados = form.cleaned_data['citados']
+                citados = ';'.join(
+                    [
+                        ' '.join([request.POST['citado'], request.POST['cpf']]),
+                        ' '.join([request.POST['citado2'], request.POST['cpf2']])
+                    ]
+                )
                 new_divida.citados = multi_split(val_string=citados)
                 new_divida.save()
                 return HttpResponseRedirect('/consultaDivida')
@@ -55,14 +62,15 @@ def divida(request):
 
 @login_required
 def consulta_divida(request):
-    dividas = m_divida.objects.all().order_by('-data_add')[:10]
+    dividas = ''
     if request.method == 'POST':
         form = form_divida_consulta(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
             dividas = m_divida.objects.filter(
-                Q(nome_devedor__contains=search) |
-                Q(ident_devedor__contains=search)
+                Q(nome_devedor__icontains=search) |
+                Q(ident_devedor_cleaned__startswith=search.replace('/', '').replace('.', '').replace('-', '').strip()) |
+                Q(citados__icontains=search)
             )
             if form.cleaned_data['inativos'] == 'True':
                 dividas = dividas.filter(is_open=True)
