@@ -11,7 +11,6 @@ from .cpf import CPF
 from django.db import IntegrityError
 
 
-
 def get_ip(request):
     try:
         x_forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
@@ -42,7 +41,6 @@ def cadastro(request):
     if request.method == 'POST':
         form = form_credor(request.POST)
         form_user = form_credor_user(request.POST)
-        print(form.is_valid())
         if form.is_valid() and form_user.is_valid():
             cnpj_c = form.cleaned_data['cnpj'].replace('/', '').replace('-', '').replace('.', '')
             cpf = CPF(cnpj_c)
@@ -65,7 +63,7 @@ def cadastro(request):
                         new_user.email = user
                     except IntegrityError as e:
                         c_errors = 'email'
-                        return render(request,'posto/cadastro.html', {
+                        return render(request, 'posto/cadastro.html', {
                             'form': form,
                             'form_user': form_user,
                             'c_errors': c_errors
