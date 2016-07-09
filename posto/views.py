@@ -25,8 +25,13 @@ def get_ip(request):
 
 def index(request):
     dividas_count = divida_model.objects.count()
+    try:
+        cr = credor.objects.get(email=request.user)
+    except:
+        cr = ''
     context = {
-        'dividas_count': dividas_count
+        'dividas_count': dividas_count,
+        'credor': cr
     }
     print(request.user.is_authenticated)
     if request.user.is_authenticated():
@@ -68,19 +73,23 @@ def cadastro(request):
                             'form_user': form_user,
                             'c_errors': c_errors
                         })
-                new_user.cnpj = cnpj_c
-                new_user.data_add = datetime.now()
-                new_user.ip_user = get_ip(request)
-                new_user.save()
-                logout(request)
-                user = authenticate(username=email, password=pwd)
-                if user is not None:
-                    if user.is_active:
-                        login(request, user)
-                        return HttpResponseRedirect('/')
+                    new_user.cnpj = cnpj_c
+                    new_user.data_add = datetime.now()
+                    new_user.ip_user = get_ip(request)
+                    new_user.save()
+                    logout(request)
+                    user = authenticate(username=email, password=pwd)
+                    if user is not None:
+                        if user.is_active:
+                            login(request, user)
+                            return HttpResponseRedirect('/')
+                    else:
+                        return HttpResponseRedirect('/logon_fail')
+                    return HttpResponseRedirect('/')
                 else:
-                    return HttpResponseRedirect('/logon_fail')
-                return HttpResponseRedirect('/')
+                    c_errors = 'password_not_match'
+                    form = form_credor()
+                    form_user = form_credor_user()
             else:
                 c_errors = 'cnpj'
                 form = form_credor()

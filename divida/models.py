@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from posto.models import credor
 
 
 class divida(models.Model):
@@ -10,6 +11,12 @@ class divida(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name='CNPJ do credor'
+    )
+    credor = models.ForeignKey(
+        credor,
+        on_delete=models.CASCADE,
+        verbose_name='Credor',
+        null=True
     )
     data_add = models.DateTimeField(
         null=True
@@ -59,7 +66,7 @@ class divida(models.Model):
         max_length=2,
         null=True,
         choices=tipo_choices,
-        default=OUTRO,
+        default=DUPLICIDATE,
         verbose_name='Tipo de dívida'
     )
     is_open = models.BooleanField(

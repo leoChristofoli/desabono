@@ -14,12 +14,12 @@
             <!-- Jumbotron -->
               <div class="col-md-4">
                 {% if user_profile %}
-                  <h3>Email: <small>{{ user_profile.email }}</small></h3>
+                  <h3>Empresa: <small>{{ credor.empresa }}</small></h3>
                 {% endif %}
               </div>
             <div class="col-md-4">
                 {% if user_profile %}
-                  <h3>CNPJ: <small>{{ user_profile.cnpj }}</small></h3>
+                  <h3>CNPJ da empresa: <small>{{ user_profile.cnpj }}</small></h3>
                 {% endif %}
             </div>
         </div>
@@ -30,11 +30,19 @@
             {% endif %}
             </div>
         </div>
+        <div class="row">
+            <!-- Jumbotron -->
+              <div class="col-md-4">
+                {% if user_profile %}
+                  <h3>Email: <small>{{ user_profile.email }}</small></h3>
+                {% endif %}
+              </div>
+        </div>
         {% if dividas != '' %}
         <hr>
         <div class="row">
         <div class="col-md-8">
-            <h2>Minhas Dívidas</h2>
+            <h2>Meus registros</h2>
             <div class="table-responsive" id="mydivs">
             <table class="table table-hover" id="table">
                 <thead>
