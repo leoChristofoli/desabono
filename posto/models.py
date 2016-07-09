@@ -62,7 +62,7 @@ class credor(models.Model):
         max_length=3,
         null=True,
         choices=tipo_choices,
-        default=OUTRO,
+        default=FACTORING,
         verbose_name='Tipo de empresa'
     )
     cargo = models.CharField(
