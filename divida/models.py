@@ -86,7 +86,7 @@ class divida(models.Model):
         self.ident_devedor_cleaned = self.ident_devedor.replace('/', '').replace('.', '').replace('-', '')
         super(divida, self).save(*args, **kwargs)
 
-    def __str__(self):
+    def __unicode__(self):
         return "{id}, {nome}".format(id=self.credor_cnpj.username, nome=self.nome_devedor)
 
 

@@ -76,7 +76,7 @@ class credor(models.Model):
         verbose_name='Site da empresa'
     )
 
-    def __str__(self):
+    def __unicode__(self):
         return "{nome} {sobrenome} @{empresa}".format(
             nome=self.nome,
             sobrenome=self.sobrenome,
