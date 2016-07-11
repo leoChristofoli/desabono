@@ -87,7 +87,7 @@ class divida(models.Model):
         super(divida, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "{id}, {nome}".format(id=self.id, nome=self.nome_devedor)
+        return "{id}, {nome}".format(id=self.credor_cnpj.username, nome=self.nome_devedor)
 
 
 class comentario(models.Model):
