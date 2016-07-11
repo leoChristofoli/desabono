@@ -61,6 +61,7 @@ def user_view(request, user_id):
     if int(request.user.id) == int(user_id):
         user = User.objects.get(id=user_id)
         user_profile = credor.objects.get(email=user)
+        user_credor = credor.objects.get(email=request.user)
         dividas = divida_model.objects.filter(credor_cnpj=user).order_by('data_add')
         dividas_count = divida_model.objects.filter(credor_cnpj=user).count()
         dividas_enc_count = divida_model.objects.filter(credor_cnpj=user).filter(is_open=False).count()
@@ -78,6 +79,7 @@ def user_view(request, user_id):
 
         context = {
             'user_profile': user_profile,
+            'credor': user_credor,
             'div_page': div_page,
             'dividas_enc_count': dividas_enc_count,
             'dividas_abertas_count': dividas_abertas_count,

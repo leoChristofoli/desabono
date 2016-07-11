@@ -73,6 +73,21 @@ $(document).ready(function(){
                                                 {{form.sobrenome.errors}}
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa">
+                                                {{form.cargo.errors}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                                    data-toggle="popover" data-trigger="focus" title="Importante" data-placement="right"
+                                                       data-container="body"
+                                                        data-content="Esse email será usado para acessar sua conta e recuperar a senha">
+                                                {{form_user.email.errors}}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,10 +113,6 @@ $(document).ready(function(){
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-6">
-                                                <input type="text" class="form-control" id="cargo" name="cargo" placeholder="Cargo na empresa">
-                                                {{form.cargo.errors}}
-                                            </div>
                                             <div class="container-fluid">
                                                 <label for="{{form.tipo_empresa_id_for_label}}">Tipo de empresa</label>
                                                 {{form.tipo_empresa}}
@@ -122,15 +133,7 @@ $(document).ready(function(){
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                                    data-toggle="popover" data-trigger="focus" title="Importante" data-placement="right"
-                                                       data-container="body"
-                                                        data-content="Esse email será usado para acessar sua conta e recuperar a senha">
-                                                {{form_user.email.errors}}
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -141,6 +144,9 @@ $(document).ready(function(){
                                         <div class="col-xs-6">
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
                                             {{form_user.password.errors}}
+                                            {% if c_errors == 'password_not_match' %}
+                                                <ul><li>Senhas não conferem</li></ul>
+                                            {% endif %}
                                         </div>
                                         <div class="col-xs-6">
                                             <input type="password" class="form-control" id="password_check" name="password_check" placeholder="confirme sua senha">
@@ -161,7 +167,7 @@ $(document).ready(function(){
                                 <div class="container">
                                     <p class="text-justify">Você está se associando à uma rede de troca de informações.
                                         Esse clube não é definidor
-                                        de crédito e as informações nele prestadas são de responsabilidade única e intranferivel
+                                        de crédito e as informações nele prestadas são de responsabilidade única e intransferível
                                         de quem as registrou. A decisão de aceita-las como verdadeiras cabe somente a você, usuário
                                     </p>
                                 </div>

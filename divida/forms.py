@@ -21,7 +21,7 @@ BOOL_CHOICES = (
 
 
 class form_divida_descricao(forms.Form):
-    descricao = forms.CharField(min_length=4, max_length=8000)
+    descricao = forms.CharField(min_length=0, max_length=8000)
     is_open = forms.ChoiceField(
         required=False,
         initial=False,

@@ -50,12 +50,14 @@ $(document).ready(function(){
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
+                                <label for="credor_fake">Credor</label>
+                                <input type="text" class="form-control" id="credor_fake" name="" placeholder="{{ credor.empresa }}" disabled>
+                                <br>
                                 <div class="form-group">
                                     <div class="input-group">
                                       <div class="input-group-addon">R$</div>
                                         <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor da dívida">
-                                        <script type="text/javascript">$("#valor").maskMoney();</script>
-                                        {{ form.valor.errors }}
+                                        <script type="text/javascript">$("#valor").maskMoney({allowNegative: false, thousands:'.', decimal:',', affixesStay: false});</script>                                        {{ form.valor.errors }}
                                     </div>
                                 </div>
                         </div>
@@ -84,8 +86,11 @@ $(document).ready(function(){
                                 <div class="form-group" id="deve">
                                         <input type="text" class="form-control" id="nome_devedor" name="nome_devedor" placeholder="Nome do devedor">
                                         {{ form.nome_devedor.errors }}
-                                        <input type="text" class="form-control" id="ident_devedor" name="ident_devedor" placeholder="CNPJ devedor">
+                                        <input type="text" class="form-control" id="ident_devedor" name="ident_devedor" placeholder="CNPJ ou CPF do devedor">
                                         {{ form.ident_devedor.errors }}
+                                        {% if c_errors == 'cnpj' %}
+                                            <ul><li>CNPJ ou CPF inválido</li></ul>
+                                        {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -8,9 +8,11 @@ from .forms import form_divida,\
     form_divida_consulta
 from .models import comentario
 from .models import divida as m_divida
+from posto.models import credor
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .cnpj import Cnpj
+from posto.cpf import CPF
 import re
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -28,14 +30,19 @@ def divida(request):
     c_errors = ''
     if request.method == 'POST':
         data = request.POST.copy()
-        data['valor'] = float(request.POST['valor'].replace(',', ''))
+        data['valor'] = float(request.POST['valor'].replace('.', '').replace(',', '.'))
         form = form_divida(data)
         form_desc = form_divida_descricao(request.POST)
+        print form.is_valid()
+        print form_desc.errors
         if form.is_valid() and form_desc.is_valid():
             cnpj_c = form.cleaned_data['ident_devedor']
-            if Cnpj().validate(cnpj_c):
+            cpf = CPF(cnpj_c)
+            if Cnpj().validate(cnpj_c) or cpf.isValid():
+                print '2'
                 new_divida = form.save(commit=False)
                 new_divida_desc = form_desc.cleaned_data['descricao']
+                new_divida.credor = credor.objects.get(email=request.user)
                 new_divida.credor_cnpj = User.objects.get(id=request.user.id)
                 new_divida.data_add = datetime.now()
                 new_divida.descricao = new_divida_desc
@@ -47,7 +54,7 @@ def divida(request):
                 )
                 new_divida.citados = multi_split(val_string=citados)
                 new_divida.save()
-                return HttpResponseRedirect('/consultaDivida')
+                return HttpResponseRedirect('/home')
             else:
                 c_errors = 'cnpj'
                 form = form_divida()
@@ -55,6 +62,7 @@ def divida(request):
         form = form_divida()
     context = {
         'form': form,
+        'credor':credor.objects.get(email=request.user),
         'c_errors': c_errors
     }
     return render(request, 'divida/divida.html', context)
