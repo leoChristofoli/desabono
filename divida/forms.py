@@ -2,6 +2,7 @@
 from django.forms import ModelForm
 from django import forms
 from models import divida
+from datetime import datetime, date
 
 
 class form_divida(ModelForm):
@@ -12,6 +13,12 @@ class form_divida(ModelForm):
                   'ident_devedor',
                   'vencimento',
                   'tipo_divida']
+
+    def clean_vencimento(self):
+        date = self.cleaned_data['vencimento']
+        if date > date.today():
+            raise forms.ValidationError("Apenas datas passadas")
+        return date
 
 
 BOOL_CHOICES = (

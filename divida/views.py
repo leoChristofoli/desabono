@@ -30,7 +30,10 @@ def divida(request):
     c_errors = ''
     if request.method == 'POST':
         data = request.POST.copy()
-        data['valor'] = float(request.POST['valor'].replace('.', '').replace(',', '.'))
+        try:
+            data['valor'] = float(request.POST['valor'].replace('.', '').replace(',', '.'))
+        except ValueError:
+            data['valor'] = request.POST['valor']
         form = form_divida(data)
         form_desc = form_divida_descricao(request.POST)
         print form.is_valid()
