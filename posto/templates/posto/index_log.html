@@ -41,8 +41,8 @@
                       <div class="container-fluid">
                             <h3>O que deseja fazer agora?</h3>
                                 {% if user.is_authenticated %}
-                                <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar restrições</a>
-                                <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registrar restrição &raquo;</a>
+                                <a class="btn btn-lg btn-default" href="{% url 'consulta_divida' %}" role="button">Consultar ocorrências</a>
+                                <a class="btn btn-lg btn-primary" href="{% url 'divida' %}" role="button">Registrar ocorrência &raquo;</a>
                                 <a class="btn btn-lg btn-default" href="{% url 'user' request.user.id %}" role="button">Consultar meus registros</a>
                                 {% endif %}
                         </div>
