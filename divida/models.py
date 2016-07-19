@@ -90,6 +90,47 @@ class divida(models.Model):
         return "{id}, {nome}".format(id=self.credor_cnpj.username, nome=self.nome_devedor)
 
 
+class DividaDados(models.Model):
+    divida_ref = models.ForeignKey(
+        divida,
+        on_delete=models.CASCADE
+    )
+    ip = models.CharField(
+        null=True,
+        max_length=100
+    )
+    insert = models.DateTimeField(
+        null=True,
+        auto_now_add=True
+    )
+
+
+class ConsultaLog(models.Model):
+    user = models.ForeignKey(
+        credor,
+        on_delete=models.CASCADE
+    )
+    ip = models.CharField(
+        max_length=100,
+        null=True
+    )
+    termo_buscado = models.CharField(
+        max_length=8000,
+        null=True
+    )
+    resultado = models.CharField(
+        max_length=8000,
+        null=True
+    )
+    tempo = models.FloatField(
+        null=True
+    )
+    insert = models.DateTimeField(
+        null=True,
+        auto_now_add=True
+    )
+
+
 class comentario(models.Model):
     divida = models.ForeignKey(
         divida,
