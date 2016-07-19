@@ -7,8 +7,9 @@ from .forms import form_divida,\
     form_divida_descricao,\
     form_divida_consulta
 from .models import comentario
-from .models import divida as m_divida
+from .models import divida as m_divida, DividaDados, ConsultaLog
 from posto.models import credor
+from posto.views import get_ip
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .cnpj import Cnpj
@@ -57,6 +58,11 @@ def divida(request):
                 )
                 new_divida.citados = multi_split(val_string=citados)
                 new_divida.save()
+                dv = DividaDados(
+                    divida_ref=new_divida,
+                    ip=get_ip(request)
+                )
+                dv.save()
                 return HttpResponseRedirect('/home')
             else:
                 c_errors = 'cnpj'
@@ -65,7 +71,7 @@ def divida(request):
         form = form_divida()
     context = {
         'form': form,
-        'credor':credor.objects.get(email=request.user),
+        'credor': credor.objects.get(email=request.user),
         'c_errors': c_errors
     }
     return render(request, 'divida/divida.html', context)
@@ -73,7 +79,10 @@ def divida(request):
 
 @login_required
 def consulta_divida(request):
+    inicio_request = datetime.now()
+
     dividas = ''
+    search = ''
     if request.method == 'POST':
         form = form_divida_consulta(request.POST)
         if form.is_valid():
@@ -97,6 +106,17 @@ def consulta_divida(request):
         div_page = paginator.page(1)
     except EmptyPage:
         div_page = paginator.page(paginator.num_pages)
+
+    fim_request = datetime.now()
+    tempo_total = fim_request - inicio_request
+    log = ConsultaLog(
+        user=credor.objects.get(email=request.user),
+        ip=get_ip(request),
+        termo_buscado=search,
+        resultado=len(dividas),
+        tempo=tempo_total.total_seconds()
+    )
+    log.save()
 
     return render(
         request,
