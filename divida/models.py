@@ -104,6 +104,9 @@ class DividaDados(models.Model):
         auto_now_add=True
     )
 
+    def __unicode__(self):
+        return "{divida_ref}@{ip}".format(divida_ref=self.divida_ref.credor, ip=self.ip)
+
 
 class ConsultaLog(models.Model):
     user = models.ForeignKey(
@@ -129,6 +132,9 @@ class ConsultaLog(models.Model):
         null=True,
         auto_now_add=True
     )
+
+    def __unicode__(self):
+        return "{user}@{ip}".format(user=self.user, ip=self.ip)
 
 
 class comentario(models.Model):
