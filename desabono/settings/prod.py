@@ -16,3 +16,11 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# ate migrar para aws
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'de9iqbsjaep9ja',
+    }
+}
