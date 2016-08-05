@@ -4,3 +4,4 @@ staticfiles
 *.sqlite3
 develop_settings.py
 .idea*
+fabfile/
