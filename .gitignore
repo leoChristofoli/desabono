@@ -5,3 +5,8 @@ staticfiles
 develop_settings.py
 .idea*
 fabfile/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
