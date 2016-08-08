@@ -27,9 +27,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'desabono',
-        'USER': 'u_desabono',
+        'USER': 'masterdb',
         'PASSWORD': 'd01m08r09',
-        'HOST': 'desabono.ceqdsilcf5f4.us-west-2.rds.amazonaws.com',
+        'HOST': 'db1.ceqdsilcf5f4.us-west-2.rds.amazonaws.com',
         'PORT': '5423',
     }
 }
