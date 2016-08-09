@@ -29,7 +29,7 @@ DATABASES = {
         'NAME': 'desabono',
         'USER': 'masterdb',
         'PASSWORD': 'd01m08r09',
-        'HOST': 'db1.ceqdsilcf5f4.us-west-2.rds.amazonaws.com',
+        'HOST': 'db2.ceqdsilcf5f4.us-west-2.rds.amazonaws.com',
         'PORT': '5423',
     }
 }
