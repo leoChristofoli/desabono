@@ -5,6 +5,8 @@ print('settings: Prod')
 
 INSTALLED_APPS += ('storages',)
 AWS_STORAGE_BUCKET_NAME = "desabono"
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://{name}.s3.amazonaws.com/static/'.format(name=AWS_STORAGE_BUCKET_NAME)
 STATIC_URL = S3_URL
