@@ -24,6 +24,8 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
          }
      }
+	 
+ALLOWED_HOSTS.append = '.amazonaws.com'
 
 # DATABASES = {
     # 'default': {
