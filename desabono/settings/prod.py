@@ -25,7 +25,6 @@ if 'RDS_HOSTNAME' in os.environ:
          }
      }
 	 
-ALLOWED_HOSTS.append = '.amazonaws.com'
 
 # DATABASES = {
     # 'default': {
